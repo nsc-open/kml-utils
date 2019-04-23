@@ -8,17 +8,17 @@ var gxCoords = u.gxCoords
 
 var geotypes = ['Polygon', 'LineString', 'Point', 'Track', 'gx:Track']
 
-function getGeometry (root) {
+function parse (root) {
   var geomNode, geomNodes, i, j, k, geoms = [], coordTimes = []
 
   if (get1(root, 'MultiGeometry')) {
-    return getGeometry(get1(root, 'MultiGeometry'))
+    return parse(get1(root, 'MultiGeometry'))
   }
   if (get1(root, 'MultiTrack')) {
-    return getGeometry(get1(root, 'MultiTrack'))
+    return parse(get1(root, 'MultiTrack'))
   }
   if (get1(root, 'gx:MultiTrack')) {
-    return getGeometry(get1(root, 'gx:MultiTrack'))
+    return parse(get1(root, 'gx:MultiTrack'))
   }
 
   for (i = 0; i < geotypes.length; i++) {
@@ -64,4 +64,4 @@ function getGeometry (root) {
   }
 }
 
-exports.getGeometry = getGeometry
+exports.parse = parse

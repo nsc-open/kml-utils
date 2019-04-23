@@ -1,27 +1,22 @@
 var FOLDER_KEY_NAME = require('../constants').FOLDER_KEY_NAME
-var getGeometry = require('./geometry').getGeometry
+var parseGeometry = require('./geometry').parse
 var u = require('../utils')
 var get = u.get
 var parent = u.parent
 var get1 = u.get1
 var nodeVal = u.nodeVal
 var attr = u.attr
-var kmlColor = u.kmlColor
 
-
-function getPlacemark (root, styleIndex, styleMapIndex, styleByHash) {
+function parse (root, stylePropertiesSetter) {
   var i, properties = {}
-  var geomsAndTimes = getGeometry(root)
+  var geomsAndTimes = parseGeometry(root)
   var folder = parent(root).tagName === 'Folder' ? attr(parent(root), FOLDER_KEY_NAME) : null
   var name = nodeVal(get1(root, 'name'))
   var address = nodeVal(get1(root, 'address'))
-	var styleUrl = nodeVal(get1(root, 'styleUrl'))
-  var description = nodeVal(get1(root, 'description'))
+	var description = nodeVal(get1(root, 'description'))
   var timeSpan = get1(root, 'TimeSpan')
   var timeStamp = get1(root, 'TimeStamp')
   var extendedData = get1(root, 'ExtendedData')
-  var lineStyle = get1(root, 'LineStyle')
-  var polyStyle = get1(root, 'PolyStyle')
   var visibility = get1(root, 'visibility')
 
   if (!geomsAndTimes.geoms.length) {
@@ -66,62 +61,9 @@ function getPlacemark (root, styleIndex, styleMapIndex, styleByHash) {
       properties[simpleDatas[i].getAttribute('name')] = nodeVal(simpleDatas[i])
     }
   }
-	
-	// styles
-  if (styleUrl) {
-    if (styleUrl[0] !== '#') {
-      styleUrl = '#' + styleUrl
-    }
-
-    properties.styleUrl = styleUrl
-    if (styleIndex[styleUrl]) {
-      properties.styleHash = styleIndex[styleUrl]
-    }
-    if (styleMapIndex[styleUrl]) {
-      properties.styleMapHash = styleMapIndex[styleUrl]
-      properties.styleHash = styleIndex[styleMapIndex[styleUrl].normal]
-		}
-
-    // Try to populate the lineStyle or polyStyle since we got the style hash
-    var style = styleByHash[properties.styleHash];
-    if (style) {
-      if (!lineStyle) {
-				lineStyle = get1(style, 'LineStyle')
-			}
-      if (!polyStyle) {
-				polyStyle = get1(style, 'PolyStyle')
-			}
-      var iconStyle = get1(style, 'IconStyle')
-      if (iconStyle) {
-      	var icon = get1(iconStyle, 'Icon')
-        if (icon) {
-        	var href = nodeVal(get1(icon, 'href'))
-          if (href) {
-						properties.icon = href
-					}
-        }
-      }
-    }
-	}
-  if (lineStyle) {
-    var linestyles = kmlColor(nodeVal(get1(lineStyle, 'color')))
-    var color = linestyles[0]
-    var opacity = linestyles[1]
-    var width = parseFloat(nodeVal(get1(lineStyle, 'width')))
-    if (color) properties.stroke = color
-    if (!isNaN(opacity)) properties['stroke-opacity'] = opacity
-    if (!isNaN(width)) properties['stroke-width'] = width
-  }
-  if (polyStyle) {
-    var polystyles = kmlColor(nodeVal(get1(polyStyle, 'color')))
-    var pcolor = polystyles[0]
-    var popacity = polystyles[1]
-    var fill = nodeVal(get1(polyStyle, 'fill'))
-  	var outline = nodeVal(get1(polyStyle, 'outline'))
-    if (pcolor) properties.fill = pcolor
-    if (!isNaN(popacity)) properties['fill-opacity'] = popacity
-    if (fill) properties['fill-opacity'] = fill === '1' ? properties['fill-opacity'] || 1 : 0
-    if (outline) properties['stroke-opacity'] = outline === '1' ? properties['stroke-opacity'] || 1 : 0
+  
+  if (stylePropertiesSetter) {
+    stylePropertiesSetter(root, properties)
   }
   
   var feature = {
@@ -137,7 +79,7 @@ function getPlacemark (root, styleIndex, styleMapIndex, styleByHash) {
   if (attr(root, 'id')) {
 		feature.id = attr(root, 'id')
 	}
-  return [feature]
+  return feature
 }
 
-exports.getPlacemark = getPlacemark
+exports.parse = parse

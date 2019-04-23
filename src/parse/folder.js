@@ -11,7 +11,7 @@ var setAttr = u.setAttr
  * returns folder tree: [{ key, parent, name, children }]
  * and set Folder element with key attribute
  */
-function parseFolder (kmlDocument, options) {
+function parse (kmlDocument, options) {
   var folderEls = Array.from(get(kmlDocument, 'Folder'))
   if (folderEls.length === 0) {
     return []
@@ -43,4 +43,4 @@ function parseFolder (kmlDocument, options) {
   }).map(process)
 }
 
-exports.parseFolder = parseFolder
+exports.parse = parse
