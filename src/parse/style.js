@@ -76,7 +76,7 @@ function setStyleProperties (placemarkNode, properties, styleByHash, styleIndex,
 		setPointStyleProperties(properties, iconStyle)
 	}
 	if (lineStyle) {
-		setPolylineStyleProperties(properties, lineStyle)
+		setLineStyleProperties(properties, lineStyle)
 	}
 	if (polyStyle) {
 		setPolygonStyleProperties(properties, polyStyle)
@@ -101,7 +101,7 @@ function setPointStyleProperties (properties, style) {
  * polyline style fields: { 'stroke', 'stroke-opacity', 'stroke-width' }
  * about LineStyle: https://developers.google.com/kml/documentation/kmlreference#linestyle
  */
-function setPolylineStyleProperties (properties, style) {
+function setLineStyleProperties (properties, style) {
 	var linestyles = kmlColor(nodeVal(get1(style, 'color')))
   var color = linestyles[0]
   var opacity = linestyles[1]

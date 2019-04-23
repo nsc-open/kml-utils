@@ -35,5 +35,7 @@
     "nyc": "^14.0.0",
     "xmldom": "^0.1.27"
   },
-  "dependencies": {}
+  "dependencies": {
+    "terraformer-arcgis-parser": "^1.1.0"
+  }
 }

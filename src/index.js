@@ -4,6 +4,11 @@ var parseStyle = require('./parse/style').parse
 var parsePlacemark = require('./parse/placemark').parse
 var parseFolder = require('./parse/folder').parse
 
+/**
+ * 
+ * @param {*} doc kmlDom object
+ * @param {Object} options { style }
+ */
 function parseGeoJSON (doc, options) {
 	var features = []
   var placemarks = get(doc, 'Placemark')    

@@ -80,12 +80,12 @@ exports.kmlColor = function (v) {
   if (v.substr(0, 1) === '#') {
     v = v.substr(1)
   }
-  if (v.length === 6 || v.length === 3) {
+  if (v.length === 6 || v.length === 3) { // rrggbb || rgb
     color = v
   }
-  if (v.length === 8) {
-    opacity = parseInt(v.substr(0, 2), 16) / 255
-    color = '#' + v.substr(6, 2) + v.substr(4, 2) + v.substr(2, 2)
+  if (v.length === 8) { // aabbggrr https://developers.google.com/kml/documentation/kmlreference#colorstyle
+    opacity = parseInt(v.substr(0, 2), 16) / 255 // [0, 1]
+    color = '#' + v.substr(6, 2) + v.substr(4, 2) + v.substr(2, 2) // #rrggbb
   }
   return [color, isNaN(opacity) ? undefined : opacity]
 }
