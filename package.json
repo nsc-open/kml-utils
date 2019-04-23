@@ -1,0 +1,39 @@
+{
+  "name": "kml-parse",
+  "version": "0.0.3",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "cross-env ENV=test mocha ./test/unit",
+    "cover": "nyc --reporter=html --reporter=text npm run test",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nsc/kml-parse.git"
+  },
+  "files": [
+    "src/**/*",
+    "dist/**/*"
+  ],
+  "keywords": [
+    "kml",
+    "parse"
+  ],
+  "author": "ygjack414@hotmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nsc/kml-parse/issues"
+  },
+  "homepage": "https://github.com/nsc/kml-parse#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "cross-env": "^5.2.0",
+    "fs-extra": "^7.0.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^6.1.4",
+    "nyc": "^14.0.0",
+    "xmldom": "^0.1.27"
+  },
+  "dependencies": {}
+}

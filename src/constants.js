@@ -1,0 +1,1 @@
+exports.FOLDER_KEY_NAME = '_fkey'
