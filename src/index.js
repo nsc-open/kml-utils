@@ -4,10 +4,10 @@ var parseStyle = require('./parse/style').parse
 var parsePlacemark = require('./parse/placemark').parse
 var parseFolder = require('./parse/folder').parse
 
-function parseGeoJSON (doc) {
+function parseGeoJSON (doc, options) {
 	var features = []
   var placemarks = get(doc, 'Placemark')    
-  var stylePropertiesSetter = parseStyle(doc, { returnPropertiesSetter: true })
+  var stylePropertiesSetter = (options && options.style) ? parseStyle(doc, { returnPropertiesSetter: true }) : null
 
   for (var j = 0; j < placemarks.length; j++) {
     features.push(parsePlacemark(placemarks[j], stylePropertiesSetter))
@@ -19,9 +19,9 @@ function parseGeoJSON (doc) {
 	}
 }
 
-function parse (kmlDocument) {
+function parse (kmlDocument, options) {
   var folders = parseFolder(kmlDocument)
-  var featureCollection = parseGeoJSON(kmlDocument)
+  var featureCollection = parseGeoJSON(kmlDocument, options)
 
   return {
     geoJSON: featureCollection,
