@@ -1,8 +1,8 @@
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: './kml-parse.min.js',
-    library: 'kmlParse',
+    filename: './kml-utils.min.js',
+    library: 'kmlUtils',
     libraryTarget: 'window'
   }
 }

@@ -12,7 +12,7 @@ npm i --save kml-parse
 
 
 ```js
-const kmlParse = require('kml-parse')
+const kmlParse = require('kml-utils')
 const fs = require('fs-extra')
 const DOMParser = require('xmldom').DOMParser
 const kmlDom = new DOMParser().parseFromString(fs.readFileSync('demo.kml', 'utf8'))
