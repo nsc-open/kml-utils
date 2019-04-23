@@ -85,6 +85,7 @@ function setStyleProperties (placemarkNode, properties, styleByHash, styleIndex,
 
 /**
  * point style fields: { icon: <icon url> }
+ * about IconStyle: https://developers.google.com/kml/documentation/kmlreference#iconstyle
  */
 function setPointStyleProperties (properties, style) {
 	var icon = get1(style, 'Icon')
@@ -98,6 +99,7 @@ function setPointStyleProperties (properties, style) {
 
 /**
  * polyline style fields: { 'stroke', 'stroke-opacity', 'stroke-width' }
+ * about LineStyle: https://developers.google.com/kml/documentation/kmlreference#linestyle
  */
 function setPolylineStyleProperties (properties, style) {
 	var linestyles = kmlColor(nodeVal(get1(style, 'color')))
@@ -118,6 +120,7 @@ function setPolylineStyleProperties (properties, style) {
 
 /**
  * polygon style fields: { 'fill', 'fill-opacity', 'stroke-opacity' }
+ * about PolyStyle: https://developers.google.com/kml/documentation/kmlreference#polystyle
  */
 function setPolygonStyleProperties (properties, style) {
   var polystyles = kmlColor(nodeVal(get1(style, 'color')))
