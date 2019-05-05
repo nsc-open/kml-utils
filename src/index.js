@@ -4,6 +4,8 @@ var parseStyle = require('./parse/style').parse
 var parsePlacemark = require('./parse/placemark').parse
 var parseFolder = require('./parse/folder').parse
 
+var arcgisConvertor = require('./convert/arcgis')
+
 /**
  * 
  * @param {*} doc kmlDom object
@@ -37,3 +39,4 @@ function parse (kmlDocument, options) {
 exports.parse = parse
 exports.parseFolder = parseFolder
 exports.parseGeoJSON = parseGeoJSON
+exports.arcgisConvertor = arcgisConvertor
