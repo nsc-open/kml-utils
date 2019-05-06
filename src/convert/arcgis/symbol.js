@@ -35,22 +35,21 @@ function simpleFillSymbol (properties) {
 }
 
 function simpleMarkerSymbol (properties) {
-  return {}
-  // TODO
-  /* 
   return {
     type: 'esriSMS',
-    style: 'esriSMSSquare',
-    color: [76,115,0,255],
-    size: 8,
+    style: 'esriSMSCircle',
+    color: [255, 255, 255, 64],
+    size: 12,
     angle: 0,
     xoffset: 0,
     yoffset: 0,
     outline: {
-      color: [152,230,0,255],
-      width: 1
+      color: [0, 0, 0, 255],
+      width: 1,
+      style: 'esriSLSSolid',
+      type: 'esriSLS'
     }
-  } */
+  }
 }
 
 exports.symbol = function (feature) {
