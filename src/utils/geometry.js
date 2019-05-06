@@ -17,18 +17,9 @@ function valid (_) {
   )
 }
 
-function any (_) {
-  if (geometry[_.type]) {
-    return geometry[_.type](_)
-  } else {
-    return ''
-  }
-}
-
 module.exports = {
   isPoint: isPoint,
   isPolygon: isPolygon,
   isLine: isLine,
-  valid: valid,
-  any: any
+  valid: valid
 }

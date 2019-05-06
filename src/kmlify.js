@@ -1,11 +1,11 @@
 var strxml = require('strxml')
-var colorUtils = require('../utils/color')
-var geoUtils = require('../utils/geometry')
-var styleUtils = require('../utils/style')
+var colorUtils = require('./utils/color')
+var geoUtils = require('./utils/geometry')
+var styleUtils = require('./utils/style')
 var tag = strxml.tag
 var encode = strxml.encode
 
-module.exports = function tokml (geoJSON, folderTree, options) {
+module.exports = function kmlify (geoJSON, folderTree, options) {
   options = options || {
     documentName: undefined,
     documentDescription: undefined,
@@ -100,7 +100,7 @@ function feature (options, styleHashesArray) {
     if (!_.properties || !geoUtils.valid(_.geometry)) {
       return ''
     }
-    var geometryString = geoUtils.any(_.geometry)
+    var geometryString = any(_.geometry)
     if (!geometryString) {
       return ''
     }
@@ -247,6 +247,14 @@ var GeometryTypes = {
     }).join(''))
   },
   GeometryCollection: function (_) {
-    return tag('MultiGeometry', _.geometries.map(geoUtils.any).join(''))
+    return tag('MultiGeometry', _.geometries.map(any).join(''))
+  }
+}
+
+function any (_) {
+  if (GeometryTypes[_.type]) {
+    return GeometryTypes[_.type](_)
+  } else {
+    return ''
   }
 }
