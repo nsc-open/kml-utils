@@ -5,7 +5,7 @@ var styleUtils = require('../utils/style')
 var tag = strxml.tag
 var encode = strxml.encode
 
-module.exports = function tokml (geojson, options) {
+module.exports = function tokml (geoJSON, options) {
   options = options || {
     documentName: undefined,
     documentDescription: undefined,
@@ -20,7 +20,7 @@ module.exports = function tokml (geojson, options) {
       tag('Document',
         documentName(options) +
         documentDescription(options) +
-        root(geojson, options)
+        root(geoJSON, options)
       ),
       [['xmlns', 'http://www.opengis.net/kml/2.2']]
     )

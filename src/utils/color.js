@@ -1,4 +1,3 @@
-
 function hexToKmlColor (hexColor, opacity) {
   if (typeof hexColor !== 'string') {
     return ''
