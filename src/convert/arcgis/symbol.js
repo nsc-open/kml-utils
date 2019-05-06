@@ -53,7 +53,7 @@ function simpleMarkerSymbol (properties) {
 }
 
 exports.symbol = function (feature) {
-  var geoType = feature.geometry.type
+  var geoType = feature.geometry.type === 'GeometryCollection' ? feature.geometry.geometries[0].type : feature.geometry.type
   if (geoType === 'LineString') {
     return simpleLineSymbol(feature.properties)
   } else if (geoType === 'Polygon') {
