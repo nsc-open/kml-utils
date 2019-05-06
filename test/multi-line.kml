@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
+<Document id="New_Shapefile">
+  <name>New_Shapefile</name>
+  <Snippet></Snippet>
+  <Folder id="FeatureLayer0">
+    <name>New_Shapefile</name>
+    <Snippet></Snippet>
+    <Placemark id="ID_00000">
+      <name>0</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>0</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>FID</td>
+<td>0</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>Id</td>
+<td>0</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#LineStyle00</styleUrl>
+      <MultiGeometry>
+        <LineString>
+          <extrude>0</extrude><altitudeMode>clampedToGround</altitudeMode>
+          <coordinates> -98.49545551469917,58.11279660618915,0 -32.38664130483329,83.89402944771614,0</coordinates>
+        </LineString>
+        <LineString>
+          <extrude>0</extrude><altitudeMode>clampedToGround</altitudeMode>
+          <coordinates> 119.1961953177885,77.31569946333748,0 81.80131051220781,83.29863716178477,0 -0.3338829000498277,64.78548309358672,0 6.343775100946727,6.994105900336873,0</coordinates>
+        </LineString>
+        <LineString>
+          <extrude>0</extrude><altitudeMode>clampedToGround</altitudeMode>
+          <coordinates> -0.3338829000498277,-5.001878019017175,0 -13.68919890204294,-60.82492096170533,0 -113.8540689169913,-59.83334343867908,0 -145.2390615216751,18.05700614053686,0 -71.11705771061331,12.91076579885044,0</coordinates>
+        </LineString>
+        <LineString>
+          <extrude>0</extrude><altitudeMode>clampedToGround</altitudeMode>
+          <coordinates> 165.2720355246647,-10.95084778236284,0 99.83098711489851,9.636843277339988,0 96.49215811440023,8.97787247099002,0 103.1698161153968,-60.82492096170533,0 53.75514690802227,27.87789363158315,0 142.5679983212764,43.01974317052161,0</coordinates>
+        </LineString>
+        <LineString>
+          <extrude>0</extrude><altitudeMode>clampedToGround</altitudeMode>
+          <coordinates> -84.47237371260641,87.26577181261835,0 -37.72876770563053,85.98420633483795,0 -31.05110970463397,76.56134406596165,0 7.80026477229338,67.83685969439377,0 26.37674910393639,87.80873812642778,0</coordinates>
+        </LineString>
+      </MultiGeometry>
+    </Placemark>
+  </Folder>
+  <Style id="LineStyle00">
+    <LabelStyle>
+      <color>00000000</color>
+      <scale>0.000000</scale>
+    </LabelStyle>
+    <LineStyle>
+      <color>ff899e00</color>
+      <width>1.000000</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>00000000</color>
+      <outline>0</outline>
+    </PolyStyle>
+  </Style>
+</Document>
+</kml>
