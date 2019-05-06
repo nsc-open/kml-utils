@@ -5,45 +5,51 @@ var styleUtils = require('../utils/style')
 var tag = strxml.tag
 var encode = strxml.encode
 
-module.exports = function tokml (geoJSON, options) {
+module.exports = function tokml (geoJSON, folderTree, options) {
   options = options || {
     documentName: undefined,
     documentDescription: undefined,
     name: 'name',
     description: 'description',
-    simplestyle: false,
-    timestamp: 'timestamp'
+    simpleStyle: false,
+    timestamp: 'timestamp',
+    folder: 'folder'
   }
+  folderTree = folderTree || []
 
   return '<?xml version="1.0" encoding="UTF-8"?>' +
     tag('kml',
       tag('Document',
         documentName(options) +
         documentDescription(options) +
-        root(geoJSON, options)
+        root(geoJSON, folderTree, options)
       ),
       [['xmlns', 'http://www.opengis.net/kml/2.2']]
     )
 }
 
-function root (_, options) {
-  if (!_.type) {
+function root (geoJSON, folderTree, options) {
+  if (!geoJSON.type) {
     return ''
   }
   var styleHashesArray = []
             
-  switch (_.type) {
+  switch (geoJSON.type) {
     case 'FeatureCollection':
-      if (!_.features) {
+      if (!geoJSON.features) {
         return ''
       }
-      return _.features.map(feature(options, styleHashesArray)).join('')
+      if (folderTree.length > 0 && options[folder]) {
+        return folder(folderTree, geoJSON.features, styleHashesArray, options)
+      } else {
+        return geoJSON.features.map(feature(options, styleHashesArray)).join('')
+      }
     case 'Feature':
-      return feature(options, styleHashesArray)(_)
+      return feature(options, styleHashesArray)(geoJSON)
     default:
       return feature(options, styleHashesArray)({
         type: 'Feature',
-        geometry: _,
+        geometry: geoJSON,
         properties: {}
       })
   }
@@ -65,12 +71,24 @@ function description(_, options) {
   return _[options.description] ? tag('description', encode(_[options.description])) : ''
 }
 
-function folder (_, options) {
-  // todo
-}
-
 function timestamp (_, options) {
   return _[options.timestamp] ? tag('TimeStamp', tag('when', encode(_[options.timestamp]))) : ''
+}
+
+function folder (folderTree, features, styleHashesArray, options) {
+  function _process (folders) {
+    folders = folders || []
+    if (folders.length === 0) {
+      return ''
+    }
+    return folders.map(function (folder) {
+      var folderFeatures = features.filter(function (feature) {
+        return feature.properties[options.folder] === folder.key
+      })
+      return tag('Folder', _process(folder.children) + folderFeatures.map(feature(options, styleHashesArray)).join(''))
+    }).join('')
+  }
+  return _process(folderTree)
 }
 
 function feature (options, styleHashesArray) {
@@ -85,7 +103,7 @@ function feature (options, styleHashesArray) {
       
     var styleDefinition = ''
     var styleReference = ''
-    if (options.simplestyle) {
+    if (options.simpleStyle) {
       var styleHash = styleUtils.hashStyle(_.properties)
       if (styleHash) {
         if (geoUtils.isPoint(_.geometry) && styleUtils.hasMarkerStyle(_.properties)) {
