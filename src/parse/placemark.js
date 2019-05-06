@@ -1,11 +1,11 @@
 var FOLDER_KEY_NAME = require('../constants').FOLDER_KEY_NAME
 var parseGeometry = require('./geometry').parse
-var u = require('../utils')
-var get = u.get
-var parent = u.parent
-var get1 = u.get1
-var nodeVal = u.nodeVal
-var attr = u.attr
+var domUtils = require('../utils/dom')
+var get = domUtils.get
+var parent = domUtils.parent
+var get1 = domUtils.get1
+var nodeVal = domUtils.nodeVal
+var attr = domUtils.attr
 
 function parse (root, stylePropertiesSetter) {
   var i, properties = {}

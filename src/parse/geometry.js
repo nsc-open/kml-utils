@@ -1,10 +1,7 @@
-var u = require('../utils')
-var get = u.get
-var get1 = u.get1
-var nodeVal = u.nodeVal
-var coord1 = u.coord1
-var coord = u.coord
-var gxCoords = u.gxCoords
+var domUtils = require('../utils/dom')
+var get = domUtils.get
+var get1 = domUtils.get1
+var nodeVal = domUtils.nodeVal
 
 var geotypes = ['Polygon', 'LineString', 'Point', 'Track', 'gx:Track']
 
@@ -61,6 +58,58 @@ function parse (root) {
   return {
     geoms: geoms,
     coordTimes: coordTimes
+  }
+}
+
+// cast array x into numbers
+function numarray (x) {
+  for (var j = 0, o = []; j < x.length; j++) {
+    o[j] = parseFloat(x[j])
+  }
+  return o
+}
+
+// get one coordinate from a coordinate array, if any
+var removeSpace = /\s*/g
+function coord1 (v) {
+  return numarray(v.replace(removeSpace, '').split(','))
+}
+
+// get all coordinates from a coordinate array as [[],[]]
+var trimSpace = /^\s*|\s*$/g
+var splitSpace = /\s+/
+function coord (v) {
+  var coords = v.replace(trimSpace, '').split(splitSpace)
+  var o = []
+  for (var i = 0; i < coords.length; i++) {
+    o.push(coord1(coords[i]))
+  }
+  return o
+}
+
+function gxCoord (v) {
+  return numarray(v.split(' '))
+}
+
+function gxCoords (root) {
+  var elems = get(root, 'coord', 'gx'), coords = [], times = []
+
+  if (elems.length === 0) {
+    elems = get(root, 'gx:coord')
+  }
+
+  for (var i = 0; i < elems.length; i++) {
+    coords.push(gxCoord(nodeVal(elems[i])))
+  }
+
+  var timeElems = get(root, 'when')
+  for (var j = 0; j < timeElems.length; j++) {
+    times.push(nodeVal(timeElems[j]))
+  }
+
+  return {
+    coords: coords,
+    times: times
   }
 }
 

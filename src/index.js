@@ -1,5 +1,5 @@
 
-var get = require('./utils').get
+var domUtils = require('./utils/dom')
 var parseStyle = require('./parse/style').parse
 var parsePlacemark = require('./parse/placemark').parse
 var parseFolder = require('./parse/folder').parse
@@ -13,7 +13,7 @@ var arcgisConvertor = require('./convert/arcgis')
  */
 function parseGeoJSON (doc, options) {
 	var features = []
-  var placemarks = get(doc, 'Placemark')    
+  var placemarks = domUtils.get(doc, 'Placemark')    
   var stylePropertiesSetter = (options && options.style) ? parseStyle(doc, { returnPropertiesSetter: true }) : null
 
   for (var j = 0; j < placemarks.length; j++) {

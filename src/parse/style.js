@@ -1,13 +1,24 @@
-var u = require('../utils')
-var get = u.get
-var get1 = u.get1
-var attr = u.attr
-var nodeVal = u.nodeVal
-var okhash = u.okhash
-var xml2str = u.xml2str
-var kmlColor = u.kmlColor
+var colorUtils = require('../utils/color')
+var domUtils = require('../utils/dom')
+var get = domUtils.get
+var get1 = domUtils.get1
+var attr = domUtils.attr
+var nodeVal = domUtils.nodeVal
+var xml2str = domUtils.xml2str
+var kmlColor = colorUtils.kmlColor
 
 exports.parse = parse
+
+// generate a short, numeric hash of a string
+function okhash (x) {
+  if (!x || !x.length) {
+    return 0
+  }
+  for (var i = 0, h = 0; i < x.length; i++) {
+    h = ((h << 5) - h) + x.charCodeAt(i) | 0
+  }
+  return h
+}
 
 function parse (doc, options) {
 	// styleIndex keeps track of hashed styles in order to match features

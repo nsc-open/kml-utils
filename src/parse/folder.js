@@ -1,11 +1,11 @@
 var FOLDER_KEY_NAME = require('../constants').FOLDER_KEY_NAME
-var u = require('../utils')
-var parent = u.parent
-var nodeVal = u.nodeVal
-var get = u.get
-var get1 = u.get1
-var attr = u.attr
-var setAttr = u.setAttr
+var domUtils = require('../utils/dom')
+var parent = domUtils.parent
+var nodeVal = domUtils.nodeVal
+var get = domUtils.get
+var get1 = domUtils.get1
+var attr = domUtils.attr
+var setAttr = domUtils.setAttr
 
 /**
  * returns folder tree: [{ key, parent, name, children }]

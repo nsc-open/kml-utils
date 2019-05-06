@@ -65,6 +65,10 @@ function description(_, options) {
   return _[options.description] ? tag('description', encode(_[options.description])) : ''
 }
 
+function folder (_, options) {
+  // todo
+}
+
 function timestamp (_, options) {
   return _[options.timestamp] ? tag('TimeStamp', tag('when', encode(_[options.timestamp]))) : ''
 }
@@ -107,8 +111,7 @@ function feature (options, styleHashesArray) {
       description(_.properties, options) +
       extendeddata(_.properties) +
       timestamp(_.properties, options) +
-      geometryString +
-      styleReference
+      geometryString + styleReference
     )
   }
 }
