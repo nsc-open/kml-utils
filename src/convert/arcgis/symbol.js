@@ -44,7 +44,7 @@ function simpleMarkerSymbol (properties) {
     xoffset: 0,
     yoffset: 0,
     outline: {
-      color: [0, 0, 0, 255],
+      color: [255, 255, 255, 255],
       width: 1,
       style: 'esriSLSSolid',
       type: 'esriSLS'
