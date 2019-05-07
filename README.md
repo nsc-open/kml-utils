@@ -1,18 +1,17 @@
 ## Introduction
 
-This lib is modified from @mapbox/togeojson, enhanced with folder parse capability
+This lib is modified from @mapbox/togeojson and @mapbox/tokml, enhanced with folder capability
 
 ## Install
 
 ```bash
-npm i --save kml-parse
+npm i --save kml-utils
 ```
 
-## Usage
-
+## Parse Usage
 
 ```js
-const kmlParse = require('kml-utils')
+const { parse, parseFolder, parseGeoJSON } = require('kml-utils')
 const fs = require('fs-extra')
 const DOMParser = require('xmldom').DOMParser
 const kmlDom = new DOMParser().parseFromString(fs.readFileSync('demo.kml', 'utf8'))
@@ -21,7 +20,7 @@ const kmlDom = new DOMParser().parseFromString(fs.readFileSync('demo.kml', 'utf8
  * returns folder tree and feature collection
  * return { folder: [], geoJSON: [] }
  */
-kmlParse.parse(kmlDom)
+parse(kmlDom)
 
 /**
  * returns feature collection
@@ -29,11 +28,26 @@ kmlParse.parse(kmlDom)
  * 
  * feature.properties.folder = <folderKey>
  */
-kmlParse.toGeoJSON(kmlDom)
+parseGeoJSON(kmlDom)
 
 /**
  * returns folder tree
  * folder: [{ key: <folderKey>, parent: <parentFolderKey>, name: <folderName>, children: [] }]
  */
-kmlParse.parseFolder(kmlDom)
+parseFolder(kmlDom)
+```
+
+You can convert to arcgis graphic json object:
+
+```js
+const { parseGeoJSON, arcgisConvertor } = require('kml-utils')
+const graphicJSONs = parseGeoJSON(kmlDom).features.map(arcgisConvertor.graphicJSON)
+```
+
+## Kmlify Usage
+
+```js
+const { parse, kmlify } = require('kml-utils')
+const { geoJSON, folders } = parse(kmlDom)
+const kmlString = kmlify(geoJSON, folders)
 ```
