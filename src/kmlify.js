@@ -39,7 +39,7 @@ function root (geoJSON, folderTree, options) {
       if (!geoJSON.features) {
         return ''
       }
-      if (folderTree.length > 0 && options[folder]) {
+      if (folderTree.length > 0 && options.folder) {
         return folder(folderTree, geoJSON.features, styleHashesArray, options)
       } else {
         return geoJSON.features.map(feature(options, styleHashesArray)).join('')
