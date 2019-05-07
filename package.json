@@ -36,7 +36,7 @@
     "xmldom": "^0.1.27"
   },
   "dependencies": {
-    "strxml": "0.0.0",
+    "strxml": "^1.0.0",
     "terraformer-arcgis-parser": "^1.1.0"
   }
 }

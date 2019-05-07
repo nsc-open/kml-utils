@@ -3,7 +3,6 @@ var colorUtils = require('./utils/color')
 var geoUtils = require('./utils/geometry')
 var styleUtils = require('./utils/style')
 var tag = strxml.tag
-var encode = strxml.encode
 
 module.exports = function kmlify (geoJSON, folderTree, options) {
   options = options || {
@@ -64,15 +63,15 @@ function documentDescription (options) {
 }
 
 function name (_, options) {
-  return _[options.name] ? tag('name', encode(_[options.name])) : ''
+  return _[options.name] ? tag('name', _[options.name]) : ''
 }
 
 function description(_, options) {
-  return _[options.description] ? tag('description', encode(_[options.description])) : ''
+  return _[options.description] ? tag('description', _[options.description]) : ''
 }
 
 function timestamp (_, options) {
-  return _[options.timestamp] ? tag('TimeStamp', tag('when', encode(_[options.timestamp]))) : ''
+  return _[options.timestamp] ? tag('TimeStamp', tag('when', _[options.timestamp])) : ''
 }
 
 function folder (folderTree, features, styleHashesArray, options) {
@@ -148,7 +147,7 @@ function extendeddata (_) {
 }
 
 function data (_) {
-  return tag('Data', tag('value', encode(_[1])), [['name', encode(_[0])]])
+  return tag('Data', tag('value', _[1]), [['name', _[0]]])
 }
 
 // ## Marker style
