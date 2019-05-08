@@ -34,17 +34,21 @@ function simpleFillSymbol (properties) {
   }
 }
 
+/**
+ * there is no symbol styles mapping from kml point to arcgis symbol,
+ * so here we just returns a default marker symbol
+ */
 function simpleMarkerSymbol (properties) {
   return {
     type: 'esriSMS',
     style: 'esriSMSCircle',
-    color: [255, 255, 255, 64],
-    size: 12,
+    color: [255, 0, 0, 64],
+    size: 10,
     angle: 0,
     xoffset: 0,
     yoffset: 0,
     outline: {
-      color: [255, 255, 255, 255],
+      color: [255, 0, 0, 255],
       width: 1,
       style: 'esriSLSSolid',
       type: 'esriSLS'
