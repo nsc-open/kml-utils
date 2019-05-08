@@ -5,16 +5,18 @@ var styleUtils = require('./utils/style')
 var tag = strxml.tag
 
 module.exports = function kmlify (geoJSON, folderTree, options) {
-  options = options || {
+  options = Object.assign({
     documentName: undefined,
     documentDescription: undefined,
     name: 'name',
     description: 'description',
     simpleStyle: true,
     timestamp: 'timestamp',
-    folder: 'folder'
-  }
+    folder: 'folder',
+    dataType: 'geojson' // arcjson
+  }, options)
   folderTree = folderTree || []
+  geoJSON = options.dataType === 'geojson' ? geoJSON : geoUtils.toFeatureCollection(geoJSON)
 
   return '<?xml version="1.0" encoding="UTF-8"?>' +
     tag('kml',

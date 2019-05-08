@@ -1,3 +1,6 @@
+var turf = require('@turf/turf')
+var parse = require('terraformer-arcgis-parser').parse
+
 function isPoint (_) {
   return _.type === 'Point' || _.type === 'MultiPoint'
 }
@@ -17,9 +20,65 @@ function valid (_) {
   )
 }
 
+function mecatorToWgs84 (point) {
+  var pt = turf.point(point)
+  return turf.toWgs84(pt).geometry.coordinates
+}
+
+function toWgs84Geometry (geometry) {
+  if (geometry.spatialReference && geometry.spatialReference.wkid === 4326) {
+    return geometry
+  }
+
+  // by default, consider the projection is mecator, try to convert it to wgs84
+  if (geometry.rings) { // polygon
+    geometry.rings = geometry.rings.map(function (ring) {
+      return ring.map(function (point) {
+        return mecatorToWgs84(point)
+      })
+    })
+  } else if (geometry.paths) { // polyline
+    geometry.paths = geometry.paths.map(function (path) {
+      return path.map(function (point) {
+        return mecatorToWgs84(point)
+      })
+    })
+  } else if (geometry.points) { // multipoint
+    geometry.points = geometry.points.map(function (point) {
+      return mecatorToWgs84(point)
+    })
+  } else { // point
+    var x = geometry.x
+    var y = geometry.y
+    var p = mecatorToWgs84([x, y])
+    geometry.x = p[0]
+    geometry.y = p[1]
+  }
+  geometry.spatialReference = { wkid: 4326 }
+  return geometry
+}
+
+function toFeature (geometryJson) {
+  return {
+    type: 'Feature',
+    geometry: parse(toWgs84Geometry(geometryJson.geometry)),
+    properties: Object.assign({}, geometryJson.attributes)
+  }
+}
+
+function toFeatureCollection (geometryJsons) {
+  var features = (geometryJsons || []).map(toFeature)
+  return {
+    type: 'FeatureCollection',
+    features
+  }
+}
+
 module.exports = {
   isPoint: isPoint,
   isPolygon: isPolygon,
   isLine: isLine,
-  valid: valid
+  valid: valid,
+  toFeature: toFeature,
+  toFeatureCollection: toFeatureCollection
 }
