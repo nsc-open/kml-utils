@@ -10,7 +10,7 @@ module.exports = function kmlify (geoJSON, folderTree, options) {
     documentDescription: undefined,
     name: 'name',
     description: 'description',
-    simpleStyle: false,
+    simpleStyle: true,
     timestamp: 'timestamp',
     folder: 'folder'
   }
