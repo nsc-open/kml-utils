@@ -5,9 +5,10 @@ var parse = require('../src/index').parse
 
 var graphicJSON = require('../src/convert/arcgis/graphic').graphicJSON
 
-var kmlDom = new DOMParser().parseFromString(fs.readFileSync('demo2.kml', 'utf8'))
+var kmlDom = new DOMParser().parseFromString(fs.readFileSync('./kmls/styled-point.kml', 'utf8'))
 var r = parse(kmlDom, { style: true })
 
-// r.geoJSON.features = r.geoJSON.features.map(f => graphicJSON(f))
+r.graphicJSON = r.geoJSON.features.map(f => graphicJSON(f))
 
-fs.writeJsonSync(path.resolve(__dirname, `./${Date.now()}.json`), JSON.stringify(r))
+
+fs.writeJsonSync(path.resolve(__dirname, `./${Date.now()}.json`), JSON.stringify(r.graphicJSON))

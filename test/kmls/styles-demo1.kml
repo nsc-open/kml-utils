@@ -14,7 +14,7 @@
 					<Placemark>
 						<name>路径333</name>
 						<Style>
-							<LineStyle><color>7fff0000</color><width>3</width></LineStyle>
+							<LineStyle><color>7fff0000</color><width>6</width></LineStyle>
 						</Style>
 							<LineString>
 								<coordinates>115.45754382,28.91552075,0 115.56499750,28.85031234,0 115.67754342,28.90610949,0 115.82179389,28.85503825,0 </coordinates>
@@ -24,7 +24,7 @@
 						<name>风电场</name>
 						<description>Unknown Area Type</description>
 						<Style>
-							<LineStyle><color>00ffffff</color><width>1</width></LineStyle>
+							<LineStyle><color>ffffffff</color><width>5</width></LineStyle>
 							<PolyStyle><color>ba00ffff</color></PolyStyle>
 						</Style>
 						<MultiGeometry>
