@@ -9,9 +9,9 @@ function rgba (color, opacity) {
   if (color.length === 6) { // rrggbb
     // do nothing
   }
-  r = parseInt(color.substr(1, 2), 16)
-  g = parseInt(color.substr(3, 2), 16)
-  b = parseInt(color.substr(5, 2), 16)
+  r = parseInt(color.substr(0, 2), 16)
+  g = parseInt(color.substr(2, 2), 16)
+  b = parseInt(color.substr(4, 2), 16)
   a = opacity === undefined ? 255 : Math.round(opacity * 255)
   return [r, g, b, a]
 }
