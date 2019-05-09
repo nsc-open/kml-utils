@@ -1,3 +1,5 @@
+var DEFAULT_SYMBOLS = require('../../constants')
+
 /**
  * 
  * @param {String} color rgb/#rgb/rrggbb/#rrggbb
@@ -25,8 +27,8 @@ function simpleLineSymbol (properties) {
   return {
     type: 'esriSLS',
     style: 'esriSLSSolid',
-    color: properties['stroke'] ? rgba(properties['stroke'], properties['stroke-opacity']) : null,
-    width: properties['stroke-width']
+    color: properties['stroke'] ? rgba(properties['stroke'], properties['stroke-opacity']) : DEFAULT_SYMBOLS.polyline.color,
+    width: properties['stroke-width'] || DEFAULT_SYMBOLS.polyline.width
   }
 }
 
@@ -34,7 +36,7 @@ function simpleFillSymbol (properties) {
   return {
     type: 'esriSFS',
     style: 'esriSFSSolid',
-    color: properties['fill'] ? rgba(properties['fill'], properties['fill-opacity']) : null,
+    color: properties['fill'] ? rgba(properties['fill'], properties['fill-opacity']) : DEFAULT_SYMBOLS.polygon.color,
     outline: simpleLineSymbol(properties)
   }
 }
@@ -44,21 +46,7 @@ function simpleFillSymbol (properties) {
  * so here we just returns a default marker symbol
  */
 function simpleMarkerSymbol (properties) {
-  return {
-    type: 'esriSMS',
-    style: 'esriSMSCircle',
-    color: [255, 0, 0, 64],
-    size: 10,
-    angle: 0,
-    xoffset: 0,
-    yoffset: 0,
-    outline: {
-      color: [255, 0, 0, 255],
-      width: 1,
-      style: 'esriSLSSolid',
-      type: 'esriSLS'
-    }
-  }
+  return DEFAULT_SYMBOLS.marker
 }
 
 exports.symbol = function (feature) {

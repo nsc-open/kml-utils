@@ -3,6 +3,7 @@ var colorUtils = require('./utils/color')
 var toFeatureCollection = require('./convert/geojson').toFeatureCollection
 var geoUtils = require('./utils/geometry')
 var styleUtils = require('./utils/style')
+var DEFAULT_KML_STYLES = require('./constants')
 var tag = strxml.tag
 
 module.exports = function kmlify (geoJSON, folderTree, options) {
@@ -179,15 +180,15 @@ function iconSize (_) {
 // ## Polygon and Line style
 function polygonAndLineStyle(_, styleHash) {
   var lineStyle = tag('LineStyle', [
-    tag('color', colorUtils.hexToKmlColor(_['stroke'], _['stroke-opacity']) || 'ff555555') +
-    tag('width', (_['stroke-width'] === undefined ? 2 : _['stroke-width']) + '')
+    tag('color', colorUtils.hexToKmlColor(_['stroke'], _['stroke-opacity']) || DEFAULT_KML_STYLES.lineStyleColor) +
+    tag('width', (_['stroke-width'] === undefined ? DEFAULT_KML_STYLES.lineWidth : _['stroke-width']) + '')
   ])
     
   var polyStyle = ''
     
   if (_['fill'] || _['fill-opacity']) {
     polyStyle = tag('PolyStyle', [
-      tag('color', colorUtils.hexToKmlColor(_['fill'], _['fill-opacity']) || '88555555')
+      tag('color', colorUtils.hexToKmlColor(_['fill'], _['fill-opacity']) || DEFAULT_KML_STYLES.polySyleColor)
     ])
   }
     
