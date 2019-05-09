@@ -5,6 +5,7 @@ var parsePlacemark = require('./parse/placemark').parse
 var parseFolder = require('./parse/folder').parse
 
 var arcgisConvertor = require('./convert/arcgis')
+var geoJSONConvertor = require('./convert/geojson')
 var kmlify = require('./kmlify')
 
 /**
@@ -41,4 +42,5 @@ exports.parse = parse
 exports.parseFolder = parseFolder
 exports.parseGeoJSON = parseGeoJSON
 exports.arcgisConvertor = arcgisConvertor
+exports.geoJSONConvertor = geoJSONConvertor
 exports.kmlify = kmlify
