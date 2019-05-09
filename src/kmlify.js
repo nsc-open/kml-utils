@@ -21,12 +21,12 @@ module.exports = function kmlify (geoJSON, folderTree, options) {
 
   return '<?xml version="1.0" encoding="UTF-8"?>' +
     tag('kml',
+      { xmlns: 'http://www.opengis.net/kml/2.2' },
       tag('Document',
         documentName(options) +
         documentDescription(options) +
         root(geoJSON, folderTree, options)
-      ),
-      [['xmlns', 'http://www.opengis.net/kml/2.2']]
+      )
     )
 }
 
@@ -118,8 +118,10 @@ function feature (options, styleHashesArray) {
             styleHashesArray.push(styleHash)
           }
           styleReference = tag('styleUrl', '#' + styleHash);
-        } else if ((geoUtils.isPolygon(_.geometry) || geoUtils.isLine(_.geometry)) && 
-          styleUtils.hasPolygonAndLineStyle(_.properties)) {
+        } else if (
+          (geoUtils.isPolygon(_.geometry) || geoUtils.isLine(_.geometry)) && 
+          styleUtils.hasPolygonAndLineStyle(_.properties)
+        ) {
           if (styleHashesArray.indexOf(styleHash) === -1) {
             styleDefinition = polygonAndLineStyle(_.properties, styleHash)
             styleHashesArray.push(styleHash)
@@ -150,34 +152,35 @@ function extendeddata (_) {
 }
 
 function data (_) {
-  return tag('Data', tag('value', _[1]), [['name', _[0]]])
+  return tag('Data', { name: _[0] }, tag('value', _[1]))
 }
 
 // ## Marker style
 function markerStyle (_, styleHash) {
   return tag('Style',
+    { id: styleHash },
     tag('IconStyle',
       tag('Icon',
         tag('href', styleUtils.iconUrl(_))
       )
-    ) + iconSize(_), [['id', styleHash]]
+    ) + iconSize(_)
   )
 }
 
 function iconSize (_) {
-  return tag('hotSpot', '', [
-    ['xunits', 'fraction'],
-    ['yunits', 'fraction'],
-    ['x', 0.5],
-    ['y', 0.5]
-  ])
+  return tag('hotSpot', {
+    xunits: 'fraction',
+    yunits: 'fraction',
+    x: 0.5,
+    y: 0.5
+  }, '')
 }
 
 // ## Polygon and Line style
 function polygonAndLineStyle(_, styleHash) {
   var lineStyle = tag('LineStyle', [
     tag('color', colorUtils.hexToKmlColor(_['stroke'], _['stroke-opacity']) || 'ff555555') +
-    tag('width', _['stroke-width'] === undefined ? 2 : _['stroke-width'])
+    tag('width', (_['stroke-width'] === undefined ? 2 : _['stroke-width']) + '')
   ])
     
   var polyStyle = ''
@@ -188,7 +191,7 @@ function polygonAndLineStyle(_, styleHash) {
     ])
   }
     
-  return tag('Style', lineStyle + polyStyle, [['id', styleHash]])
+  return tag('Style', { id: styleHash }, lineStyle + polyStyle)
 }
 
 // ## General helpers

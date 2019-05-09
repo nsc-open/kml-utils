@@ -25,10 +25,10 @@ exports.styleProperties = function (graphicJSON) {
     var fso = colorArrToHexAndOpacity(symbol.color)
     var oso = colorArrToHexAndOpacity(symbol.outline.color)
 
-    properties['fill'] = fso.stroke
+    properties['fill'] = fso.hex
     properties['fill-opacity'] = fso.opacity
 
-    properties['stroke'] = oso.stroke
+    properties['stroke'] = oso.hex
     properties['stroke-opacity'] = oso.opacity
     properties['stroke-width'] = symbol.outline.width
   } else if (geometry.paths) {
