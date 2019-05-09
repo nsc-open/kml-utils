@@ -1,3 +1,8 @@
+/**
+ * 
+ * @param {String} color rgb/#rgb/rrggbb/#rrggbb
+ * @param {Number} opacity [0, 1]
+ */
 function rgba (color, opacity) {
   var r, g, b, a
   if (color[0] === '#') { // #rrggbb

@@ -1,3 +1,33 @@
+/**
+ * 
+ * @param {Number} n
+ * @param {Number} topValue 1 or 255, default is 255
+ * @return 2 digits hex value in lowercase like, ff
+ */
+function numberToHex (n, topValue) {
+  var hex
+  topValue = topValue || 255
+  if (topValue === 1) {
+    n *= 255
+  }
+  n = Math.min(n, 255)
+  hex = n.toString(16)
+
+  if (hex.indexOf('.') > -1) {
+    hex = hex.substr(0, hex.indexOf('.'))
+  }
+  if (hex.length < 2) {
+    hex = '0' + hex
+  }
+  return hex
+}
+
+/**
+ * convert hex to kml color value
+ * @param {String} hexColor format like: FFF/FFFFFF/#FFF/#FFFFFF
+ * @param {Number} opacity [0, 1]
+ * @return {String} aabbggrr (lowercase)
+ */
 function hexToKmlColor (hexColor, opacity) {
   if (typeof hexColor !== 'string') {
     return ''
@@ -29,6 +59,11 @@ function hexToKmlColor (hexColor, opacity) {
   return o + b + g + r
 }
 
+/**
+ * parse kml color value
+ * @param {String} v acceptable formats: rgb/#rgb/rrggbb/#rrggbb/aabbggrr
+ * @return [hexColorString(#rrggbb), opacity([0,1])]
+ */
 function kmlColor (v) {
   var color, opacity
   v = v || ''
@@ -47,5 +82,6 @@ function kmlColor (v) {
 
 module.exports = {
   hexToKmlColor: hexToKmlColor,
-  kmlColor: kmlColor
+  kmlColor: kmlColor,
+  numberToHex: numberToHex
 }
