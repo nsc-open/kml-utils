@@ -1,4 +1,5 @@
-var turf = require('@turf/turf')
+var Point = require('@turf/helpers').point
+var toWgs84 = require('@turf/projection').toWgs84
 
 function isPoint (_) {
   return _.type === 'Point' || _.type === 'MultiPoint'
@@ -20,8 +21,8 @@ function valid (_) {
 }
 
 function mecatorToWgs84 (point) {
-  var pt = turf.point(point)
-  return turf.toWgs84(pt).geometry.coordinates
+  var pt = Point(point)
+  return toWgs84(pt).geometry.coordinates
 }
 
 function toWgs84Geometry (geometry) {

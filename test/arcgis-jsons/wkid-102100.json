@@ -1,0 +1,45 @@
+{
+  "geometry": {
+    "paths": [
+      [
+        [
+          9475202.38,
+          3675852.18
+        ],
+        [
+          9471096.53,
+          3676390.58
+        ],
+        [
+          9470674.77,
+          3677290.33
+        ]
+      ]
+    ],
+    "spatialReference": {
+      "wkid": 102100
+    }
+  },
+  "attributes": {
+    "id": "50885ae0-649c-11e9-86ce-cd4a77363fda",
+    "name": "达雄110kV线路",
+    "category": "l-undefined-1",
+    "gType": "lineSketch",
+    "gId": "50885ae0-649c-11e9-86ce-cd4a77363fda",
+    "lineId": "c37d8ed0-6267-11e9-94fc-d71cb15a7c96",
+    "sectionId": "9fe226b0-6268-11e9-94fc-d71cb15a7c96",
+    "objectId": 3
+  },
+  "symbol": {
+    "color": [
+      250,
+      173,
+      20,
+      255
+    ],
+    "width": 1.6,
+    "style": "esriSLSSolid",
+    "type": "esriSLS"
+  },
+  "name": "达雄110kV线路"
+}
