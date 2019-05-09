@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:gx="http://www.google.com/kml/ext/2.2">
+	<Document>
+		<Placemark>
+			<name>styled line</name>
+			<Style>
+				<LineStyle>
+					<color>7fff0000</color>
+					<width>6</width>
+				</LineStyle>
+			</Style>
+			<LineString>
+				<coordinates>115.45754382,28.91552075,0 115.56499750,28.85031234,0 115.67754342,28.90610949,0 115.82179389,28.85503825,0</coordinates>
+			</LineString>
+		</Placemark>
+	</Document>
+</kml>

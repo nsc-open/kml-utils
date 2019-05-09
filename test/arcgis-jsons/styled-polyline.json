@@ -1,0 +1,46 @@
+{
+  "attributes": {
+    "name": "\n\t\t\t\tstyled line\n\t\t\t",
+    "stroke-width": 6
+  },
+  "geometry": {
+    "paths": [
+      [
+        [
+          115.45754382,
+          28.91552075,
+          0
+        ],
+        [
+          115.5649975,
+          28.85031234,
+          0
+        ],
+        [
+          115.67754342,
+          28.90610949,
+          0
+        ],
+        [
+          115.82179389,
+          28.85503825,
+          0
+        ]
+      ]
+    ],
+    "spatialReference": {
+      "wkid": 4326
+    }
+  },
+  "symbol": {
+    "type": "esriSLS",
+    "style": "esriSLSSolid",
+    "color": [
+      0,
+      0,
+      255,
+      127
+    ],
+    "width": 6
+  }
+}

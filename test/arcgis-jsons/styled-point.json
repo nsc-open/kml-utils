@@ -1,0 +1,38 @@
+{
+  "attributes": {
+    "name": "\n\t\t\t\t\t\t1111\n\t\t\t\t\t",
+    "type": "\n\t\t\t\t\t\tpoint\n\t\t\t\t\t"
+  },
+  "geometry": {
+    "x": 100.50292968747362,
+    "y": 40.480381429072345,
+    "spatialReference": {
+      "wkid": 4326
+    }
+  },
+  "symbol": {
+    "type": "esriSMS",
+    "style": "esriSMSCircle",
+    "color": [
+      255,
+      0,
+      0,
+      64
+    ],
+    "size": 10,
+    "angle": 0,
+    "xoffset": 0,
+    "yoffset": 0,
+    "outline": {
+      "color": [
+        255,
+        0,
+        0,
+        255
+      ],
+      "width": 1,
+      "style": "esriSLSSolid",
+      "type": "esriSLS"
+    }
+  }
+}

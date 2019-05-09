@@ -36,6 +36,7 @@
     "xmldom": "^0.1.27"
   },
   "dependencies": {
+    "@turf/turf": "^5.1.6",
     "strxml": "^1.0.0",
     "terraformer-arcgis-parser": "^1.1.0"
   }
