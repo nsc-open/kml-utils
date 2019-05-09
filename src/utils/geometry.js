@@ -1,5 +1,4 @@
 var turf = require('@turf/turf')
-var parse = require('terraformer-arcgis-parser').parse
 
 function isPoint (_) {
   return _.type === 'Point' || _.type === 'MultiPoint'
@@ -58,27 +57,10 @@ function toWgs84Geometry (geometry) {
   return geometry
 }
 
-function toFeature (geometryJson) {
-  return {
-    type: 'Feature',
-    geometry: parse(toWgs84Geometry(geometryJson.geometry)),
-    properties: Object.assign({}, geometryJson.attributes)
-  }
-}
-
-function toFeatureCollection (geometryJsons) {
-  var features = (geometryJsons || []).map(toFeature)
-  return {
-    type: 'FeatureCollection',
-    features
-  }
-}
-
 module.exports = {
   isPoint: isPoint,
   isPolygon: isPolygon,
   isLine: isLine,
   valid: valid,
-  toFeature: toFeature,
-  toFeatureCollection: toFeatureCollection
+  toWgs84Geometry: toWgs84Geometry
 }
