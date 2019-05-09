@@ -1,5 +1,5 @@
-const graphicJSON = require('./graphic').graphicJSON
-const symbol = require('./symbol').symbol
+var graphicJSON = require('./graphic').graphicJSON
+var symbol = require('./symbol').symbol
 
 module.exports = {
   graphicJSON,

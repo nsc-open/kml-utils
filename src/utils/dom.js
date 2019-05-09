@@ -29,7 +29,7 @@ function get (doc, tag) {
 }
 
 function get1 (doc, tag) {
-  const els = get(doc, tag)
+  var els = get(doc, tag)
   return els.length ? els[0] : null
 }
 
