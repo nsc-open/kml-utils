@@ -49,9 +49,11 @@ function norm (el) {
   return el.normalize ? el.normalize() : el
 }
 
-function nodeVal (el) {
+function nodeVal (el, trim) {
   if (el) { norm(el) }
-  return (el && el.textContent) || ''
+  var value = (el && el.textContent) || ''
+  trim = trim === undefined ? true : trim // trim line breaks and spaces
+  return trim ? value.replace(/(\r\n|\n|\r)/gm, "").trim() : value
 }
 
 module.exports = {

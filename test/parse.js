@@ -5,7 +5,7 @@ var parse = require('../src/index').parse
 
 var graphicJSON = require('../src/convert/arcgis/graphic').graphicJSON
 
-var kmlDom = new DOMParser().parseFromString(fs.readFileSync('./kmls/styled-polygon.kml', 'utf8'))
+var kmlDom = new DOMParser().parseFromString(fs.readFileSync('./kmls/styled-polygon2.kml', 'utf8'))
 var r = parse(kmlDom, { style: true })
 
 r.graphicJSON = r.geoJSON.features.map(f => graphicJSON(f))
