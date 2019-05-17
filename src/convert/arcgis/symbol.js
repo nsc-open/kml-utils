@@ -1,4 +1,4 @@
-var DEFAULT_SYMBOLS = require('../../constants')
+var DEFAULT_SYMBOLS = require('../../constants').DEFAULT_SYMBOLS
 
 /**
  * 
@@ -49,7 +49,7 @@ function simpleMarkerSymbol (properties) {
   return DEFAULT_SYMBOLS.marker
 }
 
-exports.symbol = function (feature) {
+exports.symbol = function (feature) {  
   var geoType = feature.geometry.type === 'GeometryCollection' ? feature.geometry.geometries[0].type : feature.geometry.type
   if (geoType === 'LineString') {
     return simpleLineSymbol(feature.properties)
