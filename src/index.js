@@ -14,6 +14,7 @@ var kmlify = require('./kmlify')
  * @param {Object} options { style }
  */
 function parseGeoJSON (doc, options) {
+  options = Object.assign({ style: true }, options)
 	var features = []
   var placemarks = domUtils.get(doc, 'Placemark')    
   var stylePropertiesSetter = (options && options.style) ? parseStyle(doc, { returnPropertiesSetter: true }) : null
