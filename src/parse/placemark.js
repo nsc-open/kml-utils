@@ -21,7 +21,21 @@ function parse (root, stylePropertiesSetter) {
 
   if (!geomsAndTimes.geoms.length) {
 		return []
-	}
+  }
+  
+  // parse extendedData first, so it could be overrided if name conflicts
+  if (extendedData) {
+    var datas = get(extendedData, 'Data')
+    var simpleDatas = get(extendedData, 'SimpleData')
+
+    for (i = 0; i < datas.length; i++) {
+      properties[datas[i].getAttribute('name')] = nodeVal(get1(datas[i], 'value'))
+    }
+    for (i = 0; i < simpleDatas.length; i++) {
+      properties[simpleDatas[i].getAttribute('name')] = nodeVal(simpleDatas[i])
+    }
+  }
+
   if (folder) {
 		properties.folder = folder
 	}
@@ -50,18 +64,7 @@ function parse (root, stylePropertiesSetter) {
 			? geomsAndTimes.coordTimes[0]
 			: geomsAndTimes.coordTimes
 	}
-	if (extendedData) {
-    var datas = get(extendedData, 'Data')
-    var simpleDatas = get(extendedData, 'SimpleData')
-
-    for (i = 0; i < datas.length; i++) {
-      properties[datas[i].getAttribute('name')] = nodeVal(get1(datas[i], 'value'))
-    }
-    for (i = 0; i < simpleDatas.length; i++) {
-      properties[simpleDatas[i].getAttribute('name')] = nodeVal(simpleDatas[i])
-    }
-  }
-  
+	
   if (stylePropertiesSetter) {
     stylePropertiesSetter(root, properties)
   }
