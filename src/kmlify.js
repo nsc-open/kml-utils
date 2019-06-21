@@ -153,7 +153,7 @@ function extendeddata (_) {
 }
 
 function data (_) {
-  return tag('Data', { name: _[0] }, tag('value', _[1]))
+  return tag('Data', { name: _[0] }, tag('value', _[1] || ''))
 }
 
 // ## Marker style
