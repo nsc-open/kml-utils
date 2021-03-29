@@ -1,17 +1,17 @@
 var jsdom = require('jsdom')
 
 exports.parse = function (cdata) {
-  const html = cdata.substring('<![CDATA['.length, cdata.length - ']]>'.length)
+  var html = cdata.substring('<![CDATA['.length, cdata.length - ']]>'.length)
 
-  const descriptionDom = new jsdom.JSDOM(html)
-  const descriptionDocument = descriptionDom.window.document
+  var descriptionDom = new jsdom.JSDOM(html)
+  var descriptionDocument = descriptionDom.window.document
 
-  const tds = descriptionDocument.querySelectorAll('td>table td')
-  const attributes = {}
+  var tds = descriptionDocument.querySelectorAll('td>table td')
+  var attributes = {}
 
   for (let i = 0; i < tds.length; i += 2) {
-    const key = tds[i].innerHTML
-    const value = tds[i + 1].innerHTML
+    var key = tds[i].innerHTML
+    var value = tds[i + 1].innerHTML
     // skip empty value
     if (!value || value === '&lt;空&gt;') {
       continue

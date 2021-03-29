@@ -3,13 +3,14 @@ var path = require('path')
 var DOMParser = require('xmldom').DOMParser
 var parse = require('../src/index').parse
 var arcgisConvertor = require('../src/index').arcgisConvertor
+var parseDescription = require('../src/index').parseDescription
 
-var kmlDom = new DOMParser().parseFromString(fs.readFileSync('E:/workplace/one/modules/kml/HOUSE_single_graphic_multi_polygons.kml', 'utf8'))
+var kmlDom = new DOMParser().parseFromString(fs.readFileSync('./kmls/HOUSE_single_graphic_multi_linestrings.kml', 'utf8'))
 var r = parse(kmlDom, { 
   style: true, 
   propertyCallbacks: {
     description(data){
-      return { description1: 123 }
+      return parseDescription(data)
     }
   },
   coordCallback(coord){

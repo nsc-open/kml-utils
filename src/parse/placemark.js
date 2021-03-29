@@ -7,7 +7,7 @@ var get1 = domUtils.get1
 var nodeVal = domUtils.nodeVal
 var attr = domUtils.attr
 
-var isObj = function (a){
+var isObj = function (a) {
   return Object.prototype.toString.call(a) === '[object Object]'
 }
 
@@ -77,14 +77,14 @@ function parse (root, stylePropertiesSetter, options) {
   }
 
   var callbacks = $options.propertyCallbacks
-  if(isObj(callbacks)){
-    for(var key in callbacks){
-      if(!properties.hasOwnProperty(key)) continue
+  if (isObj(callbacks)) {
+    for (var key in callbacks) {
+      if (!properties.hasOwnProperty(key)) continue
       var val = callbacks[key](properties[key])
-      if(isObj(val)){
+      if (isObj(val)) {
         delete properties[key]
         Object.assign(properties, val)
-      }else {
+      } else {
         properties[key] = callbacks[key](properties[key])
       }
     }
