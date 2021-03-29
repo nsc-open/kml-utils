@@ -4,8 +4,18 @@ var DOMParser = require('xmldom').DOMParser
 var parse = require('../src/index').parse
 var arcgisConvertor = require('../src/index').arcgisConvertor
 
-var kmlDom = new DOMParser().parseFromString(fs.readFileSync('./kmls/路径0803.kml', 'utf8'))
-var r = parse(kmlDom, { style: true })
+var kmlDom = new DOMParser().parseFromString(fs.readFileSync('E:/workplace/one/modules/kml/HOUSE_single_graphic_multi_polygons.kml', 'utf8'))
+var r = parse(kmlDom, { 
+  style: true, 
+  propertyCallbacks: {
+    description(data){
+      return { description1: 123 }
+    }
+  },
+  coordCallback(coord){
+    return coord.map(a => a+1000)
+  },
+})
 
 r.graphicJSON = r.geoJSON.features.map(f => {
   console.log('-', f.properties)

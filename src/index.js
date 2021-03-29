@@ -11,16 +11,16 @@ var kmlify = require('./kmlify')
 /**
  * 
  * @param {*} doc kmlDom object
- * @param {Object} options { style }
+ * @param {Object} options { style, callbackAttrs }
  */
 function parseGeoJSON (doc, options) {
-  options = Object.assign({ style: true }, options)
+  options = Object.assign({ style: true, propertyCallbacks: null }, options)
 	var features = []
   var placemarks = domUtils.get(doc, 'Placemark')    
   var stylePropertiesSetter = (options && options.style) ? parseStyle(doc, { returnPropertiesSetter: true }) : null
 
   for (var j = 0; j < placemarks.length; j++) {
-    features.push(parsePlacemark(placemarks[j], stylePropertiesSetter))
+    features.push(parsePlacemark(placemarks[j], stylePropertiesSetter, options))
 	}
 
   return {
