@@ -3,6 +3,7 @@ var domUtils = require('./utils/dom')
 var parseStyle = require('./parse/style').parse
 var parsePlacemark = require('./parse/placemark').parse
 var parseFolder = require('./parse/folder').parse
+var parseDescription = require('./parse/description').parse
 
 var arcgisConvertor = require('./convert/arcgis')
 var geoJSONConvertor = require('./convert/geojson')
@@ -45,3 +46,4 @@ exports.parseGeoJSON = parseGeoJSON
 exports.arcgisConvertor = arcgisConvertor
 exports.geoJSONConvertor = geoJSONConvertor
 exports.kmlify = kmlify
+exports.parseDescription = parseDescription
