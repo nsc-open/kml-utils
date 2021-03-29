@@ -7,9 +7,16 @@ var get1 = domUtils.get1
 var nodeVal = domUtils.nodeVal
 var attr = domUtils.attr
 
-function parse (root, stylePropertiesSetter) {
+var isObj = function (a) {
+  return Object.prototype.toString.call(a) === '[object Object]'
+}
+
+var $options = {}
+
+function parse (root, stylePropertiesSetter, options) {
+  if(options) $options = options
   var i, properties = {}
-  var geomsAndTimes = parseGeometry(root)
+  var geomsAndTimes = parseGeometry(root, $options)
   var folder = parent(root).tagName === 'Folder' ? attr(parent(root), FOLDER_KEY_NAME) : null
   var name = nodeVal(get1(root, 'name'))
   var address = nodeVal(get1(root, 'address'))
@@ -67,6 +74,20 @@ function parse (root, stylePropertiesSetter) {
 	
   if (stylePropertiesSetter) {
     stylePropertiesSetter(root, properties)
+  }
+
+  var callbacks = $options.propertyCallbacks
+  if (isObj(callbacks)) {
+    for (var key in callbacks) {
+      if (!properties.hasOwnProperty(key)) continue
+      var val = callbacks[key](properties[key])
+      if (isObj(val)) {
+        delete properties[key]
+        Object.assign(properties, val)
+      } else {
+        properties[key] = callbacks[key](properties[key])
+      }
+    }
   }
   
   var feature = {

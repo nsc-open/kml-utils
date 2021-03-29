@@ -5,7 +5,10 @@ var nodeVal = domUtils.nodeVal
 
 var geotypes = ['Polygon', 'LineString', 'Point', 'Track', 'gx:Track']
 
-function parse (root) {
+var $options = {}
+
+function parse (root, options) {
+  if(options) $options = options
   var geomNode, geomNodes, i, j, k, geoms = [], coordTimes = []
 
   if (get1(root, 'MultiGeometry')) {
@@ -72,7 +75,9 @@ function numarray (x) {
 // get one coordinate from a coordinate array, if any
 var removeSpace = /\s*/g
 function coord1 (v) {
-  return numarray(v.replace(removeSpace, '').split(','))
+  var cord = numarray(v.replace(removeSpace, '').split(','))
+  if($options.coordCallback) cord = $options.coordCallback(cord)
+  return cord
 }
 
 // get all coordinates from a coordinate array as [[],[]]

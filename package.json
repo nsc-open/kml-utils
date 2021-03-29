@@ -37,6 +37,7 @@
   "dependencies": {
     "@turf/helpers": "^6.1.4",
     "@turf/projection": "^6.0.1",
+    "jsdom": "^16.5.2",
     "strxml": "^1.0.0",
     "terraformer-arcgis-parser": "^1.1.0",
     "xmldom": "^0.1.27"

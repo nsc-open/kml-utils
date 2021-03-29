@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
+<Document id="5BAO-HOUSE-YONGCHUAN">
+  <name>5BAO-HOUSE-YONGCHUAN</name>
+  <Snippet></Snippet>
+  <Folder id="FeatureLayer0">
+    <name>5BAO-HOUSE-YONGCHUAN</name>
+    <Snippet></Snippet>
+    <Placemark id="ID_00011">
+      <name>F2012-4</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>F2012-4</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>FID</td>
+
+<td>11</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>院落总面积</td>
+
+<td>0</td>
+
+</tr>
+
+<tr>
+
+<td>房屋总面积</td>
+
+<td>636.3</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>编号</td>
+
+<td>F2012-4</td>
+
+</tr>
+
+<tr>
+
+<td>所有人</td>
+
+<td>黄建</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>楼层数</td>
+
+<td>2.5</td>
+
+</tr>
+
+<tr>
+
+<td>归属省</td>
+
+<td>500000</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>归属市</td>
+
+<td>500100</td>
+
+</tr>
+
+<tr>
+
+<td>归属县</td>
+
+<td>500118</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>归属乡镇</td>
+
+<td>仙龙镇</td>
+
+</tr>
+
+<tr>
+
+<td>地址</td>
+
+<td>石宝寺村</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>状态</td>
+
+<td>现场核实</td>
+
+</tr>
+
+<tr>
+
+<td>备注</td>
+
+<td></td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>施工标</td>
+
+<td>渝1标</td>
+
+</tr>
+
+<tr>
+
+<td>房屋性质</td>
+
+<td>砖瓦</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>房屋类型</td>
+
+<td>民房</td>
+
+</tr>
+
+<tr>
+
+<td>用途</td>
+
+<td>主房</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>设计包</td>
+
+<td>山西院</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>
+
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <LineString>
+          <extrude>0</extrude><altitudeMode>clampToGround</altitudeMode>
+          <coordinates> 110.7827124014607,32.68619170173302,0 110.7827124014607,32.8422843437155,0</coordinates>
+        </LineString>
+        <LineString>
+          <extrude>0</extrude><altitudeMode>clampToGround</altitudeMode>
+          <coordinates> 110.7827124014607,32.68619170173302,0 110.7827124014607,32.8422843437155,0</coordinates>
+        </LineString>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00011">
+      <name>SINGLE LINESTRING</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+
+<head>
+
+<META http-equiv="Content-Type" content="text/html">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+
+<td>F2012-4</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+
+<tr>
+
+<td>FID</td>
+
+<td>11</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>院落总面积</td>
+
+<td>0</td>
+
+</tr>
+
+<tr>
+
+<td>房屋总面积</td>
+
+<td>636.3</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>编号</td>
+
+<td>F2012-4</td>
+
+</tr>
+
+<tr>
+
+<td>所有人</td>
+
+<td>黄建</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>楼层数</td>
+
+<td>2.5</td>
+
+</tr>
+
+<tr>
+
+<td>归属省</td>
+
+<td>500000</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>归属市</td>
+
+<td>500100</td>
+
+</tr>
+
+<tr>
+
+<td>归属县</td>
+
+<td>500118</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>归属乡镇</td>
+
+<td>仙龙镇</td>
+
+</tr>
+
+<tr>
+
+<td>地址</td>
+
+<td>石宝寺村</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>状态</td>
+
+<td>现场核实</td>
+
+</tr>
+
+<tr>
+
+<td>备注</td>
+
+<td></td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>施工标</td>
+
+<td>渝1标</td>
+
+</tr>
+
+<tr>
+
+<td>房屋性质</td>
+
+<td>砖瓦</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>房屋类型</td>
+
+<td>民房</td>
+
+</tr>
+
+<tr>
+
+<td>用途</td>
+
+<td>主房</td>
+
+</tr>
+
+<tr bgcolor="#D4E4F3">
+
+<td>设计包</td>
+
+<td>山西院</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+</table>
+
+</body>
+
+</html>
+
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <LineString>
+          <extrude>0</extrude><altitudeMode>clampToGround</altitudeMode>
+          <coordinates> 110.7827124014607,32.68619170173302,0 110.7827124014607,32.8422843437155,0</coordinates>
+        </LineString>
+    </Placemark>
+    
+  </Folder>
+  <Style id="PolyStyle00">
+    <LabelStyle>
+      <color>00000000</color>
+      <scale>0.000000</scale>
+    </LabelStyle>
+    <LineStyle>
+      <color>ff6e6e6e</color>
+      <width>0.400000</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>ffc6f5e3</color>
+      <outline>1</outline>
+    </PolyStyle>
+  </Style>
+</Document>
+</kml>
