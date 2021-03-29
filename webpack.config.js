@@ -4,5 +4,8 @@ module.exports = {
     filename: './kml-utils.min.js',
     library: 'kmlUtils',
     libraryTarget: 'window'
+  },
+  externals: {
+    jsdom: 'jsdom'
   }
 }

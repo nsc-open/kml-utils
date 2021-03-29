@@ -8,6 +8,11 @@ This lib is modified from @mapbox/togeojson and @mapbox/tokml, enhanced with fol
 npm i --save kml-utils
 ```
 
+注意：如果需要使用 `parseDescription()`，需要依赖 jsdom，只能在 node 端执行（无法在浏览器端执行）
+```bash
+npm i jsdom
+```
+
 ## Parse Usage
 
 ```js
