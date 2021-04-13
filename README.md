@@ -16,7 +16,7 @@ npm i jsdom
 ## Parse Usage
 
 ```js
-const { parse, parseFolder, parseGeoJSON } = require('kml-utils')
+const { parse, parseFolder, parseGeoJSON, parseDescription } = require('kml-utils')
 const fs = require('fs-extra')
 const DOMParser = require('xmldom').DOMParser
 const kmlDom = new DOMParser().parseFromString(fs.readFileSync('demo.kml', 'utf8'))
@@ -26,6 +26,27 @@ const kmlDom = new DOMParser().parseFromString(fs.readFileSync('demo.kml', 'utf8
  * return { folder: [], geoJSON: [] }
  */
 parse(kmlDom)
+
+parse(kmlDom, {
+    // parse style
+    style: true,
+    propertyCallbacks:{
+        description(){
+            // return a value to replace the property's value
+            // return '123'
+
+            // return an object to replace the property
+            // return { newName:123 }
+
+            // parse html-type-description
+            return parseDescription(data)
+        }
+    },
+    coordCallback(point){
+        // point transform
+        return point.map(a => a+1000 )
+    }
+})
 
 /**
  * returns feature collection
