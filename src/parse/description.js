@@ -9,7 +9,7 @@ exports.parse = function (cdata) {
   var tds = descriptionDocument.querySelectorAll('td>table td')
   var attributes = {}
 
-  for (let i = 0; i < tds.length; i += 2) {
+  for (var i = 0; i < tds.length; i += 2) {
     var key = tds[i].innerHTML
     var value = tds[i + 1].innerHTML
     // skip empty value
