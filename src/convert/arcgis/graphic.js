@@ -1,14 +1,19 @@
 var convert = require('terraformer-arcgis-parser').convert
 var symbol = require('./symbol').symbol
 
-function graphicJSON (feature) {
+function graphicJSON (feature, options) {
+  options = options || {
+    spatialReference: { wkid: 4326 } // default to wgs84
+  }
+
   var isGeoCollection = feature.geometry.type === 'GeometryCollection'
   var geometry
+  var spatialReference = options.spatialReference
 
   if (isGeoCollection) {
     var geometries = convert(feature.geometry)
     var type = feature.geometry.geometries[0] && feature.geometry.geometries[0].type
-    geometry = { spatialReference: { wkid: 4326 } } // wgs84
+    geometry = { spatialReference }
 
     if (type === 'Point') {
       geometry.points = geometries.map(function (g) {
@@ -31,7 +36,7 @@ function graphicJSON (feature) {
     }
   } else {
     geometry = convert(feature.geometry)
-    geometry.spatialReference = { wkid: 4326 } // wgs84
+    geometry.spatialReference = spatialReference
   }
 
   return {
