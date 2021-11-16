@@ -12,7 +12,11 @@ var setAttr = domUtils.setAttr
  * and set Folder element with key attribute
  */
 function parse (kmlDocument, options) {
-  var folderEls = Array.from(get(kmlDocument, 'Folder'))
+  var folderEls = []
+  options.folderElements.forEach(function (a) {
+    folderEls = folderEls.concat(Array.from(get(kmlDocument, a)))
+  })
+
   if (folderEls.length === 0) {
     return []
   }

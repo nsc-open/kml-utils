@@ -30,6 +30,8 @@ parse(kmlDom)
 parse(kmlDom, {
     // parse style
     style: true,
+    // parse elements to folder tree
+    folderElementNames: ['Document', 'Folder'],
     propertyCallbacks:{
         description(){
             // return a value to replace the property's value

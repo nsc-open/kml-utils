@@ -31,7 +31,12 @@ function parseGeoJSON (doc, options) {
 }
 
 function parse (kmlDocument, options) {
-  var folders = parseFolder(kmlDocument)
+  var defaultOptions = {
+    folderElements: ['Folder'],
+  }
+  options = Object.assign(defaultOptions, options || {})
+
+  var folders = parseFolder(kmlDocument, options)
   var featureCollection = parseGeoJSON(kmlDocument, options)
 
   return {

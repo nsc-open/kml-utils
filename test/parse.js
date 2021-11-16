@@ -8,6 +8,7 @@ var parseDescription = require('../src/index').parseDescription
 var kmlDom = new DOMParser().parseFromString(fs.readFileSync('./kmls/HOUSE_single_graphic_multi_linestrings.kml', 'utf8'))
 var r = parse(kmlDom, { 
   style: true, 
+  folderElementNames: ['Document', 'Folder'],
   propertyCallbacks: {
     description(data){
       return parseDescription(data)
