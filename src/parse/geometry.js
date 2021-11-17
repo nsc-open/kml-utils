@@ -29,17 +29,17 @@ function parse (root, options) {
         if (geotypes[i] === 'Point') {
           geoms.push({
             type: 'Point',
-            coordinates: coord1(nodeVal(get1(geomNode, 'coordinates')))
+            coordinates: coord1(nodeVal(get1(geomNode, 'coordinates'), false))
           })
         } else if (geotypes[i] === 'LineString') {
           geoms.push({
             type: 'LineString',
-            coordinates: coord(nodeVal(get1(geomNode, 'coordinates')))
+            coordinates: coord(nodeVal(get1(geomNode, 'coordinates'), false))
           })
         } else if (geotypes[i] === 'Polygon') {
           var rings = get(geomNode, 'LinearRing'), coords = []
           for (k = 0; k < rings.length; k++) {
-            coords.push(coord(nodeVal(get1(rings[k], 'coordinates'))));
+            coords.push(coord(nodeVal(get1(rings[k], 'coordinates'), false)));
           }
           geoms.push({
             type: 'Polygon',
@@ -74,6 +74,9 @@ function numarray (x) {
 
 // get one coordinate from a coordinate array, if any
 var removeSpace = /\s*/g
+var trimSpace = /^\s*|\s*$/g
+var splitSpace = /\s+/
+
 function coord1 (v) {
   var cord = numarray(v.replace(removeSpace, '').split(','))
   if($options.coordCallback) cord = $options.coordCallback(cord)
@@ -81,8 +84,6 @@ function coord1 (v) {
 }
 
 // get all coordinates from a coordinate array as [[],[]]
-var trimSpace = /^\s*|\s*$/g
-var splitSpace = /\s+/
 function coord (v) {
   var coords = v.replace(trimSpace, '').split(splitSpace)
   var o = []
