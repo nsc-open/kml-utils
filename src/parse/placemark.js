@@ -17,7 +17,8 @@ function parse (root, stylePropertiesSetter, options) {
   if(options) $options = options
   var i, properties = {}
   var geomsAndTimes = parseGeometry(root, $options)
-  var folder = parent(root).tagName === 'Folder' ? attr(parent(root), FOLDER_KEY_NAME) : null
+  var folder = options.folderElements.some(function(a){ return a === parent(root).tagName }) ? attr(parent(root), FOLDER_KEY_NAME) : null
+  var key = options.folderElements.some(function(a){ return a === root.tagName }) ? attr(root, FOLDER_KEY_NAME) : null
   var name = nodeVal(get1(root, 'name'))
   var address = nodeVal(get1(root, 'address'))
 	var description = nodeVal(get1(root, 'description'))
@@ -45,7 +46,11 @@ function parse (root, stylePropertiesSetter, options) {
 
   if (folder) {
 		properties.folder = folder
+		properties.parent = folder
 	}
+  if (key) {
+    properties.key = key
+  }
   if (name) {
 		properties.name = name
 	}
