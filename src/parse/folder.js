@@ -34,7 +34,7 @@ function parse (kmlDocument, options) {
 
     return {
       key: key,
-      parent: parentEl.tagName === 'Folder' ? attr(parentEl, FOLDER_KEY_NAME) : null,
+      parent: options.folderElements.some(function(a){ return a === parentEl.tagName }) ? attr(parentEl, FOLDER_KEY_NAME) : null,
       name: nameEl ? nodeVal(nameEl) : defaultFolderName,
       children: folderEls.filter(function (e) {
         return parent(e) === folderEl
