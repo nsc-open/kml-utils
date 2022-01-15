@@ -69,7 +69,8 @@ You can convert to arcgis graphic json object:
 
 ```js
 const { parseGeoJSON, arcgisConvertor } = require('kml-utils')
-const graphicJSONs = parseGeoJSON(kmlDom).features.map(arcgisConvertor.graphicJSON)
+const _ = require('lodash')
+const graphicJSONs = _.flatten(parseGeoJSON(kmlDom).features.map(arcgisConvertor.graphicJSON))
 ```
 
 ## Kmlify Usage
