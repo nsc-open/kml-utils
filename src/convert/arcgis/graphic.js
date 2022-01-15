@@ -13,7 +13,7 @@ function graphicJSON(feature, options) {
   if (isGeoCollection) {
     var _features = feature.geometry.geometries.map(a => {
       return {
-        ...feature,
+        ...JSON.parse(JSON.stringify(feature)),
         geometry: a
       }
     })
