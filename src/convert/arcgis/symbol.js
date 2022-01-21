@@ -5,7 +5,7 @@ var DEFAULT_SYMBOLS = require('../../constants').DEFAULT_SYMBOLS
  * @param {String} color rgb/#rgb/rrggbb/#rrggbb
  * @param {Number} opacity [0, 1]
  */
-function rgba (color, opacity) {
+function rgba(color, opacity) {
   var r, g, b, a
   if (color[0] === '#') { // #rrggbb
     color = color.substr(1)
@@ -23,7 +23,7 @@ function rgba (color, opacity) {
   return [r, g, b, a]
 }
 
-function simpleLineSymbol (properties) {
+function simpleLineSymbol(properties) {
   return {
     type: 'esriSLS',
     style: 'esriSLSSolid',
@@ -32,7 +32,7 @@ function simpleLineSymbol (properties) {
   }
 }
 
-function simpleFillSymbol (properties) {
+function simpleFillSymbol(properties) {
   return {
     type: 'esriSFS',
     style: 'esriSFSSolid',
@@ -45,17 +45,17 @@ function simpleFillSymbol (properties) {
  * there is no symbol styles mapping from kml point to arcgis symbol,
  * so here we just returns a default marker symbol
  */
-function simpleMarkerSymbol (properties) {
+function simpleMarkerSymbol(properties) {
   return DEFAULT_SYMBOLS.marker
 }
 
-exports.symbol = function (feature) {  
+exports.symbol = function (feature) {
   var geoType = feature.geometry.type === 'GeometryCollection' ? feature.geometry.geometries[0].type : feature.geometry.type
-  if (geoType === 'LineString') {
+  if (['LineString', 'MultiLineString'].includes(geoType)) {
     return simpleLineSymbol(feature.properties)
-  } else if (geoType === 'Polygon') {
+  } else if (['Polygon', 'MultiPolygon'].includes(geoType)) {
     return simpleFillSymbol(feature.properties)
-  } else if (geoType === 'Point') {
+  } else if (['Point', 'MultiPoint'].includes(geoType)) {
     return simpleMarkerSymbol(feature.properties)
   }
 }
