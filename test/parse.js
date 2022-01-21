@@ -5,7 +5,8 @@ var parse = require('../src/index').parse
 var arcgisConvertor = require('../src/index').arcgisConvertor
 var parseDescription = require('../src/index').parseDescription
 
-var kmlDom = new DOMParser().parseFromString(fs.readFileSync('./kmls/HOUSE_single_graphic_multi_linestrings.kml', 'utf8'))
+var filePath = path.join(__dirname, './kmls/folders-demo.kml')
+var kmlDom = new DOMParser().parseFromString(fs.readFileSync(filePath, 'utf8'))
 var r = parse(kmlDom, { 
   style: true, 
   folderElementNames: ['Document', 'Folder'],
@@ -20,9 +21,16 @@ var r = parse(kmlDom, {
 })
 
 r.graphicJSON = r.geoJSON.features.map(f => {
-  console.log('-', f.properties)
-  return arcgisConvertor.graphicJSON(f)
+  // console.log('-', f.properties)
+  return arcgisConvertor.graphicJSON(f, { 
+    geometryCollection: {
+      mergePoint: true,
+      mergePolyline: true,
+      mergePolygon: true,
+    }
+  })
 })
+.flat()
 
 
 fs.writeJsonSync(path.resolve(__dirname, `./${Date.now()}.json`), JSON.stringify(r.graphicJSON))
