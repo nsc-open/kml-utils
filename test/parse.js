@@ -15,7 +15,7 @@ var r = parse(kmlDom, {
       return parseDescription(data)
     }
   },
-  coordCallback(coord){
+  coordCallback(coord, attributes){
     return coord.map(a => a+1000)
   },
 })

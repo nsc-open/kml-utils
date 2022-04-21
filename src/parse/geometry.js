@@ -79,7 +79,7 @@ var splitSpace = /\s+/
 
 function coord1 (v) {
   var cord = numarray(v.replace(removeSpace, '').split(','))
-  if($options.coordCallback) cord = $options.coordCallback(cord)
+  if($options.coordCallback) cord = $options.coordCallback(cord, $options.attributes)
   return cord
 }
 

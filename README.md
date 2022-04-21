@@ -44,7 +44,7 @@ parse(kmlDom, {
             return parseDescription(data)
         }
     },
-    coordCallback(point){
+    coordCallback(point, attributes){
         // point transform
         return point.map(a => a+1000 )
     }
