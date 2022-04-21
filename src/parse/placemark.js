@@ -13,24 +13,25 @@ var isObj = function (a) {
 
 var $options = {}
 
-function parse (root, stylePropertiesSetter, options) {
-  if(options) $options = options
+function parse(root, stylePropertiesSetter, options) {
+  if (options) $options = options
   var i, properties = {}
   var geomsAndTimes = parseGeometry(root, $options)
-  var folder = options.folderElements.some(function(a){ return a === parent(root).tagName }) ? attr(parent(root), FOLDER_KEY_NAME) : null
-  var key = options.folderElements.some(function(a){ return a === root.tagName }) ? attr(root, FOLDER_KEY_NAME) : null
+  var folder = options.folderElements.some(function (a) { return a === parent(root).tagName }) ? attr(parent(root), FOLDER_KEY_NAME) : null
+  var key = options.folderElements.some(function (a) { return a === root.tagName }) ? attr(root, FOLDER_KEY_NAME) : null
   var name = nodeVal(get1(root, 'name'))
   var address = nodeVal(get1(root, 'address'))
-	var description = nodeVal(get1(root, 'description'))
+  var description = nodeVal(get1(root, 'description'))
+  var OvCoordType = nodeVal(get1(root, 'OvCoordType'))
   var timeSpan = get1(root, 'TimeSpan')
   var timeStamp = get1(root, 'TimeStamp')
   var extendedData = get1(root, 'ExtendedData')
   var visibility = get1(root, 'visibility')
 
   if (!geomsAndTimes.geoms.length) {
-		return []
+    return []
   }
-  
+
   // parse extendedData first, so it could be overrided if name conflicts
   if (extendedData) {
     var datas = get(extendedData, 'Data')
@@ -45,38 +46,41 @@ function parse (root, stylePropertiesSetter, options) {
   }
 
   if (folder) {
-		properties.folder = folder
-		properties.parent = folder
-	}
+    properties.folder = folder
+    properties.parent = folder
+  }
   if (key) {
     properties.key = key
   }
   if (name) {
-		properties.name = name
-	}
-	if (address) {
-		properties.address = address
-	}
-	if (description) {
-		properties.description = description
-	}
-	if (visibility) {
+    properties.name = name
+  }
+  if (address) {
+    properties.address = address
+  }
+  if (description) {
+    properties.description = description
+  }
+  if (OvCoordType) {
+    properties.OvCoordType = OvCoordType
+  }
+  if (visibility) {
     properties.visibility = nodeVal(visibility)
   }
-	if (timeStamp) {
+  if (timeStamp) {
     properties.timestamp = nodeVal(get1(timeStamp, 'when'))
-	}
-	if (timeSpan) {
+  }
+  if (timeSpan) {
     var begin = nodeVal(get1(timeSpan, 'begin'))
     var end = nodeVal(get1(timeSpan, 'end'))
     properties.timespan = { begin: begin, end: end }
-	}
-	if (geomsAndTimes.coordTimes.length) {
-		properties.coordTimes = (geomsAndTimes.coordTimes.length === 1)
-			? geomsAndTimes.coordTimes[0]
-			: geomsAndTimes.coordTimes
-	}
-	
+  }
+  if (geomsAndTimes.coordTimes.length) {
+    properties.coordTimes = (geomsAndTimes.coordTimes.length === 1)
+      ? geomsAndTimes.coordTimes[0]
+      : geomsAndTimes.coordTimes
+  }
+
   if (stylePropertiesSetter) {
     stylePropertiesSetter(root, properties)
   }
@@ -94,20 +98,20 @@ function parse (root, stylePropertiesSetter, options) {
       }
     }
   }
-  
+
   var feature = {
     type: 'Feature',
-		geometry: (geomsAndTimes.geoms.length === 1)
-			? geomsAndTimes.geoms[0]
-			: {
+    geometry: (geomsAndTimes.geoms.length === 1)
+      ? geomsAndTimes.geoms[0]
+      : {
         type: 'GeometryCollection',
         geometries: geomsAndTimes.geoms
       },
     properties: properties
-	}
+  }
   if (attr(root, 'id')) {
-		feature.id = attr(root, 'id')
-	}
+    feature.id = attr(root, 'id')
+  }
   return feature
 }
 
