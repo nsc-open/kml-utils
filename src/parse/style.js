@@ -149,7 +149,7 @@ function setPolygonStyleProperties (properties, style) {
   if (fill) {
 		properties['fill-opacity'] = fill === '1' ? properties['fill-opacity'] || 1 : 0
 	}
-  if (outline) {
-		properties['stroke-opacity'] = outline === '1' ? properties['stroke-opacity'] || 1 : 0
-	}
+  // if (outline) {
+	// 	properties['stroke-opacity'] = outline === '1' ? properties['stroke-opacity'] || 1 : 0
+	// }
 }
