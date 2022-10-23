@@ -5,7 +5,7 @@ var parse = require('../src/index').parse
 var arcgisConvertor = require('../src/index').arcgisConvertor
 var parseDescription = require('../src/index').parseDescription
 
-var filePath = path.join(__dirname, './kmls/folders-demo.kml')
+var filePath = path.join(__dirname, './kmls/multi-line.kml')
 var kmlDom = new DOMParser().parseFromString(fs.readFileSync(filePath, 'utf8'))
 var r = parse(kmlDom, { 
   style: true, 

@@ -1,6 +1,6 @@
 {
   "name": "kml-utils",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -36,14 +36,13 @@
     "webpack": "^5.45.1",
     "webpack-cli": "^4.7.2"
   },
-  "peerDependencies": {
-    "jsdom": "^16.5.2"
-  },
+  "peerDependencies": {},
   "dependencies": {
     "@turf/helpers": "^6.1.4",
     "@turf/projection": "^6.5.0",
     "strxml": "^1.0.0",
     "terraformer-arcgis-parser": "^1.1.0",
-    "xmldom": "^0.1.27"
+    "xmldom": "^0.1.27",
+    "xmldom-qsa": "^1.1.2"
   }
 }
