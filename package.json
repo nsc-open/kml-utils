@@ -34,7 +34,7 @@
     "mocha": "^6.1.4",
     "nyc": "^14.0.0",
     "webpack": "^5.45.1",
-    "webpack-cli": "^4.7.2"
+    "webpack-cli": "^4.10.0"
   },
   "peerDependencies": {},
   "dependencies": {
