@@ -1,16 +1,4 @@
-var serializer
-if (typeof XMLSerializer !== 'undefined') {
-  /* istanbul ignore next */
-  serializer = new XMLSerializer()
-} else {
-  var isNodeEnv = (typeof process === 'object' && !process.browser)
-  var isTitaniumEnv = (typeof Titanium === 'object')
-  if (typeof exports === 'object' && (isNodeEnv || isTitaniumEnv)) {
-    serializer = new (require('xmldom').XMLSerializer)()
-  } else {
-    throw new Error('Unable to initialize serializer')
-  }
-}
+var serializer = new (require('xmldom').XMLSerializer)()
 
 function xml2str (str) {
   // IE9 will create a new XMLSerializer but it'll crash immediately.
