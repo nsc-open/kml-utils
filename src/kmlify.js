@@ -153,7 +153,17 @@ function extendeddata (_) {
 }
 
 function data (_) {
-  return tag('Data', { name: _[0] }, tag('value', _[1] || ''))
+  return tag(
+    'Data', 
+    { name: _[0] }, 
+    tag(
+      'value', 
+      // 显示声明 attributes 为空对象，否则 tag 函数会在第二个参数不为 string 时，当 attributes 处理，会导致数字型的值处理成了 attributes，而 value 变成了 undefined
+      // 比如：tag('value', 1) 会被处理成 tag('value', 1, undefined)
+      {},
+      _[1] || ''
+    )
+  )
 }
 
 // ## Marker style
