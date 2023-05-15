@@ -16,7 +16,7 @@ function isLine (_) {
 function valid (_) {
   return _ && _.type && (
     _.coordinates ||
-    _.type === 'GeometryCollection' && _.geometries && _.geometries.every(geometry.valid)
+    _.type === 'GeometryCollection' && _.geometries && _.geometries.every(valid)
   )
 }
 
