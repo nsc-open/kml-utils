@@ -5,6 +5,7 @@ var geoUtils = require('./utils/geometry')
 var styleUtils = require('./utils/style')
 var DEFAULT_KML_STYLES = require('./constants')
 var tag = strxml.tag
+var isNum = require('./utils/type').isNum
 
 module.exports = function kmlify (geoJSON, folderTree, options) {
   options = Object.assign({
@@ -189,10 +190,20 @@ function iconSize (_) {
 
 // ## Polygon and Line style
 function polygonAndLineStyle(_, styleHash) {
-  var lineStyle = tag('LineStyle', [
-    tag('color', colorUtils.hexToKmlColor(_['stroke'], _['stroke-opacity']) || DEFAULT_KML_STYLES.lineStyleColor) +
-    tag('width', (_['stroke-width'] === undefined ? DEFAULT_KML_STYLES.lineWidth : _['stroke-width']) + '')
-  ])
+  var lineStyleList = []
+  var color = colorUtils.hexToKmlColor(_['stroke'], _['stroke-opacity']) || DEFAULT_KML_STYLES.lineStyleColor
+  if (color) {
+    lineStyleList.push(color)
+  }
+  var width = (isNum(_['stroke-width']) ? _['stroke-width']: DEFAULT_KML_STYLES.lineWidth) + ''
+  if (width) {
+    lineStyleList.push(width)
+  }
+
+  var lineStyle = ''
+  if (lineStyleList.length) {
+    lineStyle = tag('LineStyle', lineStyleList)
+  }
     
   var polyStyle = ''
     
