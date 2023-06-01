@@ -3,15 +3,15 @@ var domUtils = require('./utils/dom')
 var parseStyle = require('./parse/style').parse
 var parsePlacemark = require('./parse/placemark').parse
 var parseFolder = require('./parse/folder').parse
-var parseDescription = require('./parse/description').parse
 
 var arcgisConvertor = require('./convert/arcgis')
 var geoJSONConvertor = require('./convert/geojson')
 var kmlify = require('./kmlify')
+var ElementParser = require('./utils/ElementParser')
 
 /**
  * 
- * @param {*} doc kmlDom object
+ * @param {*} doc elementParser object
  * @param {Object} options { style, callbackAttrs }
  */
 function parseGeoJSON (doc, options) {
@@ -36,8 +36,10 @@ function parse (kmlDocument, options) {
   }
   options = Object.assign(defaultOptions, options || {})
 
-  var folders = parseFolder(kmlDocument, options)
-  var featureCollection = parseGeoJSON(kmlDocument, options)
+  var doc = new ElementParser(kmlDocument).tree
+
+  var folders = parseFolder(doc, options)
+  var featureCollection = parseGeoJSON(doc, options)
 
   return {
     geoJSON: featureCollection,
@@ -51,4 +53,3 @@ exports.parseGeoJSON = parseGeoJSON
 exports.arcgisConvertor = arcgisConvertor
 exports.geoJSONConvertor = geoJSONConvertor
 exports.kmlify = kmlify
-exports.parseDescription = parseDescription

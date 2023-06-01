@@ -1,23 +1,23 @@
 var fs = require('fs-extra')
 var path = require('path')
-var DOMParser = require('xmldom').DOMParser
 var parse = require('../src/index').parse
 var arcgisConvertor = require('../src/index').arcgisConvertor
-var parseDescription = require('../src/index').parseDescription
 
-var filePath = path.join(__dirname, './kmls/multi-line.kml')
-var kmlDom = new DOMParser().parseFromString(fs.readFileSync(filePath, 'utf8'))
-var r = parse(kmlDom, { 
+var filePath = path.join(__dirname, './kmls/export.kml')
+var content = fs.readFileSync(filePath, 'utf8')
+var r = parse(content, { 
   style: true, 
-  folderElementNames: ['Document', 'Folder'],
-  propertyCallbacks: {
-    description(data){
-      return parseDescription(data)
-    }
-  },
-  coordCallback(coord, attributes){
-    return coord.map(a => a+1000)
-  },
+  folderElements: ['Document', 'Folder'],
+  defaultFolderName: 'test',
+  // propertyCallbacks: {
+  //   description(data){
+  //     data.name = 'test'
+  //     return data
+  //   }
+  // },
+  // coordCallback(coord, attributes){
+  //   return coord.map(a => a+1000)
+  // },
 })
 
 r.graphicJSON = r.geoJSON.features.map(f => {

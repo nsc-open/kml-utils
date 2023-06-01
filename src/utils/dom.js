@@ -1,32 +1,35 @@
-var serializer = new (require('xmldom').XMLSerializer)()
+'use strict'
 
-function xml2str (str) {
-  // IE9 will create a new XMLSerializer but it'll crash immediately.
-  // This line is ignored because we don't run coverage tests in IE9
-  /* istanbul ignore next */
-  if (str.xml !== undefined) return str.xml
-  return serializer.serializeToString(str)
+function xml2str (el) {
+  return el? el.innerHTML: null
 }
 
 function parent (el) {
-  return el.parentElement || el.parentNode || null
+  return el? el.parent: null
 }
 
 function get (doc, tag) {
-  return doc.getElementsByTagName(tag)
+  return doc? doc.selectAllDeep(tag): null
 }
 
 function get1 (doc, tag) {
-  var els = get(doc, tag)
-  return els.length ? els[0] : null
+  return doc? doc.selectOneDeep(tag): null
+}
+
+function getChild (doc, tag) {
+  return doc? doc.selectAll(tag): null
+}
+
+function getChild1 (doc, tag) {
+  return doc? doc.selectOne(tag): null
 }
 
 function attr (el, name) {
-  return el.getAttribute(name)
+  return el? el.attributes[name]: null
 }
 
 function setAttr (el, name, value) {
-  return el.setAttribute(name, value)
+  return el? (el.attributes[name] = value): null
 }
 
 function attrf (el, name) {
@@ -34,14 +37,11 @@ function attrf (el, name) {
 }
 
 function norm (el) {
-  return el.normalize ? el.normalize() : el
+  return el? el.innerHTML: null
 }
 
 function nodeVal (el, trim) {
-  if (el) { norm(el) }
-  var value = (el && el.textContent) || ''
-  trim = trim === undefined ? true : trim // trim line breaks and spaces
-  return trim ? value.replace(/(\r\n|\n|\r)/gm, "").trim() : value
+  return norm(el)
 }
 
 module.exports = {
@@ -53,5 +53,7 @@ module.exports = {
   attrf: attrf,
   norm: norm,
   nodeVal: nodeVal,
-  xml2str: xml2str
+  xml2str: xml2str,
+  getChild: getChild,
+  getChild1: getChild1
 }

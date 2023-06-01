@@ -4,6 +4,7 @@ var parent = domUtils.parent
 var nodeVal = domUtils.nodeVal
 var get = domUtils.get
 var get1 = domUtils.get1
+var getChild1 = domUtils.getChild1
 var attr = domUtils.attr
 var setAttr = domUtils.setAttr
 
@@ -21,20 +22,20 @@ function parse (kmlDocument, options) {
     return []
   }
 
-  var defaultFolderName = (options && options.defaultFolderName) ? options.defaultFolderName : 'unknown'
+  var defaultFolderName = (options && options.defaultFolderName) ? options.defaultFolderName : null
   var parentEl = parent(folderEls[0])
 
   var n = 0
   var process = function (folderEl) {
     var parentEl = parent(folderEl)
-    var nameEl = get1(folderEl, 'name')
+    var nameEl = getChild1(folderEl, 'name')
 
     var key = (n++) + ''
     setAttr(folderEl, FOLDER_KEY_NAME, key)
 
     return {
       key: key,
-      parent: options.folderElements.some(function(a){ return a === parentEl.tagName }) ? attr(parentEl, FOLDER_KEY_NAME) : null,
+      parent: options.folderElements.some(function(a){ return a === parentEl.name }) ? attr(parentEl, FOLDER_KEY_NAME) : null,
       name: nameEl ? nodeVal(nameEl) : defaultFolderName,
       children: folderEls.filter(function (e) {
         return parent(e) === folderEl

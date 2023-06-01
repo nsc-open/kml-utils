@@ -1,6 +1,6 @@
 {
   "name": "kml-utils",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -41,8 +41,6 @@
     "@turf/helpers": "^6.1.4",
     "@turf/projection": "^6.5.0",
     "strxml": "^1.0.0",
-    "terraformer-arcgis-parser": "^1.1.0",
-    "xmldom": "^0.1.27",
-    "xmldom-qsa": "^1.1.2"
+    "terraformer-arcgis-parser": "^1.1.0"
   }
 }
