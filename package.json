@@ -42,7 +42,7 @@
     "@turf/projection": "^6.5.0",
     "strxml": "^1.0.0",
     "terraformer-arcgis-parser": "^1.1.0",
-    "xmldom": "^0.1.27",
+    "xmldom": "^0.6.0",
     "xmldom-qsa": "^1.1.2"
   }
 }
