@@ -4,8 +4,16 @@ var toFeatureCollection = require('./convert/geojson').toFeatureCollection
 var geoUtils = require('./utils/geometry')
 var styleUtils = require('./utils/style')
 var DEFAULT_KML_STYLES = require('./constants')
-var tag = strxml.tag
 var isNum = require('./utils/type').isNum
+var isArr = require('./utils/type').isArr
+var isObj = require('./utils/type').isObj
+
+function tag(el, attributes, contents) {
+  if (!isArr(attributes) && !isObj(attributes) && typeof attributes !== 'string') {
+    attributes = ''
+  }
+  return strxml.tag(el, attributes, contents)
+}
 
 module.exports = function kmlify (geoJSON, folderTree, options) {
   options = Object.assign({
