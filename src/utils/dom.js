@@ -21,6 +21,34 @@ function get1 (doc, tag) {
   return els.length ? els[0] : null
 }
 
+function getChild(doc, tag) {
+  var list = []
+  if (!doc || !doc.childNodes.length) {
+    return list
+  }
+  
+  for(var i = 0; i < doc.childNodes.length; i++) {
+    var el = doc.childNodes[i]
+    if (el.tagName === tag) {
+      list.push(el)
+    }
+  }
+  return list
+}
+
+function getChild1(doc, tag) {
+  if (!doc || !doc.childNodes.length) {
+    return null
+  }
+  for(var i = 0; i < doc.childNodes.length; i++) {
+    var el = doc.childNodes[i]
+    if (el.tagName === tag) {
+      return el
+    }
+  }
+  return null
+}
+
 function attr (el, name) {
   return el.getAttribute(name)
 }
@@ -48,6 +76,8 @@ module.exports = {
   parent: parent,
   get: get,
   get1: get1,
+  getChild: getChild,
+  getChild1: getChild1,
   attr: attr,
   setAttr: setAttr,
   attrf: attrf,

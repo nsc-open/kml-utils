@@ -9,7 +9,7 @@ var filePath = path.join(__dirname, './kmls/multi-line.kml')
 var kmlDom = new DOMParser().parseFromString(fs.readFileSync(filePath, 'utf8'))
 var r = parse(kmlDom, { 
   style: true, 
-  folderElementNames: ['Document', 'Folder'],
+  folderElements: ['Document', 'Folder'],
   propertyCallbacks: {
     description(data){
       return parseDescription(data)
