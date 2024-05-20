@@ -29,11 +29,13 @@ function parse (kmlDocument, options) {
   var process = function (folderEl) {
     var parentEl = parent(folderEl)
     var nameEl = getChild1(folderEl, 'name')
+    var descEl = getChild1(folderEl, 'desc')
+    var valueEl = getChild1(folderEl, 'value')
 
     var key = (n++) + ''
     setAttr(folderEl, FOLDER_KEY_NAME, key)
 
-    return {
+    var result = {
       key: key,
       parent: options.folderElements.some(function(a){ return a === parentEl.tagName }) ? attr(parentEl, FOLDER_KEY_NAME) : null,
       name: nameEl ? nodeVal(nameEl) : defaultFolderName,
@@ -41,6 +43,13 @@ function parse (kmlDocument, options) {
         return parent(e) === folderEl
       }).map(process)
     }
+    if (descEl) {
+      result.desc = nodeVal(descEl)
+    }
+    if (valueEl) {
+      result.value = nodeVal(valueEl)
+    }
+    return result
   }
 
   return folderEls.filter(function (e) {
