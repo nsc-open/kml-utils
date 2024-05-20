@@ -97,8 +97,10 @@ function folder (folderTree, features, styleHashesArray, options) {
       var folderFeatures = features.filter(function (feature) {
         return feature.properties[options.folder] === folder.key
       })
+      var descTag = folder.desc?tag('desc',folder.desc):''
+      var valueTag = folder.value?tag('value',folder.value):''
       return tag('Folder',
-        tag('name', folder.name) +
+        tag('name', folder.name) + descTag + valueTag +
         _process(folder.children) +
         folderFeatures.map(feature(options, styleHashesArray)).join('')
       )
