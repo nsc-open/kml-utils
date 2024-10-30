@@ -21,7 +21,11 @@ function parseGeoJSON (doc, options) {
   var stylePropertiesSetter = (options && options.style) ? parseStyle(doc, { returnPropertiesSetter: true }) : null
 
   for (var j = 0; j < placemarks.length; j++) {
-    features.push(parsePlacemark(placemarks[j], stylePropertiesSetter, options))
+    var feature = parsePlacemark(placemarks[j], stylePropertiesSetter, options)
+    if (!feature) {
+      continue
+    }
+    features.push(feature)
 	}
 
   return {

@@ -22,13 +22,14 @@ const defaultOptions = {
  * GeometryCollection
  *  */
 function graphicJSON(feature, options) {
+  if (!feature) return null
   let { spatialReference, geometryCollection } = { ...defaultOptions, ...options }
 
   let isGeoCollection = feature.geometry.type === 'GeometryCollection'
   let geometry
 
   if (isGeoCollection) {
-    let _features = feature.geometry.geometries.reduce((s, a, i) => {
+    let _features = feature.geometry.geometries.reduce(function (s, a, i) {
       a = JSON.parse(JSON.stringify(a))
       if (geometryCollection.mergePoint && ['Point', 'MultiPoint'].includes(a.type)) {
         return pushCoords(s, 'MultiPoint', a, feature)
@@ -37,12 +38,14 @@ function graphicJSON(feature, options) {
       } else if (geometryCollection.mergePolygon && ['Polygon', 'MultiPolygon'].includes(a.type)) {
         return pushCoords(s, 'MultiPolygon', a, feature)
       } else {
-        console.log('geometry.type error = ', a.type) 
+        console.log('geometry.type error = ', a.type)
       }
       return s
     }, [])
 
-    return _features.map(_feature => graphicJSON(_feature, options))
+    return _features.map(function (_feature) {
+      return graphicJSON(_feature, options)
+    })
   } else {
     geometry = convert(feature.geometry)
     geometry.spatialReference = spatialReference
@@ -56,7 +59,9 @@ function graphicJSON(feature, options) {
 }
 
 function pushCoords(s, gtype, a, feature) {
-  let index = s.findIndex(b => b.geometry.type === gtype)
+  let index = s.findIndex(function (b) {
+    return b.geometry.type === gtype
+  })
   if (index >= 0) {
     s[index].geometry.coordinates.push(a.coordinates)
     return s

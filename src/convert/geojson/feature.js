@@ -24,7 +24,11 @@ function parseEsriGeometry(geometry) {
   // 挖洞：单个 ring 需要转换成 polygon
   if (geometry.hasOwnProperty('rings') && _geometry.type === 'MultiPolygon') {
     _geometry.type = 'Polygon'
-    _geometry.coordinates = [_geometry.coordinates[0][0], _geometry.coordinates[1][0]]
+
+    _geometry.coordinates = _geometry.coordinates.reduce(function (s, a) {
+      s.push(a[0])
+      return s
+    }, [])
   }
 
   return _geometry

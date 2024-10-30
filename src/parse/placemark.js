@@ -93,7 +93,7 @@ function parse(root, stylePropertiesSetter, options) {
   var geomsAndTimes = parseGeometry(root, $options)
 
   if (!geomsAndTimes.geoms.length) {
-    return []
+    return null
   }
 
   if (geomsAndTimes.coordTimes.length) {
